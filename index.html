@@ -1,0 +1,5347 @@
+<html><head><style>body {
+   color: black;
+}
+</style></head><body><p><img src="_page_0_Picture_0.jpeg" alt=""></p>
+<p><img src="_page_0_Picture_1.jpeg" alt=""></p>
+<h1 id="-best-practices-for-project-organization-and-version-control-"><strong>Best practices for project organization and version control</strong></h1>
+<p><img src="_page_0_Picture_3.jpeg" alt=""></p>
+<p><img src="_page_0_Picture_4.jpeg" alt=""></p>
+<p>© 2024 Unity Technologies</p>
+<h2 id="-contents-"><strong>Contents</strong></h2>
+<table>
+<thead>
+<tr>
+<th>Introduction 5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Source control vs version control 6</td>
+</tr>
+<tr>
+<td>Foundational concepts 7</td>
+</tr>
+<tr>
+<td>How version control works 7</td>
+</tr>
+<tr>
+<td>Why use version control? 8</td>
+</tr>
+<tr>
+<td>Centralized vs distributed version control 8</td>
+</tr>
+<tr>
+<td>Centralized 8</td>
+</tr>
+<tr>
+<td>Distributed 9</td>
+</tr>
+<tr>
+<td>Centralized 10</td>
+</tr>
+<tr>
+<td>Distributed 10</td>
+</tr>
+<tr>
+<td>Key terms 11</td>
+</tr>
+<tr>
+<td>Best practices for organizing a Unity project 13</td>
+</tr>
+<tr>
+<td>Project organization 13</td>
+</tr>
+<tr>
+<td>Folder structure 13</td>
+</tr>
+<tr>
+<td>Empty folders 19</td>
+</tr>
+<tr>
+<td>The .meta file 20</td>
+</tr>
+<tr>
+<td>Naming standards 21</td>
+</tr>
+<tr>
+<td>Workflow optimization 22</td>
+</tr>
+<tr>
+<td>Split up your assets 22</td>
+</tr>
+<tr>
+<td>Presets 23</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Code standards 24</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UI Toolkit formatting conventions 27</td>
+</tr>
+<tr>
+<td>Services for project organization 27</td>
+</tr>
+<tr>
+<td>Asset Manager 27</td>
+</tr>
+<tr>
+<td>Build Automation 31</td>
+</tr>
+<tr>
+<td>Version control systems 36</td>
+</tr>
+<tr>
+<td>Git 36</td>
+</tr>
+<tr>
+<td>Perforce (Helix Core) 41</td>
+</tr>
+<tr>
+<td>Apache Subversion 42</td>
+</tr>
+<tr>
+<td>Unity Version Control 42</td>
+</tr>
+<tr>
+<td>VCS comparison 45</td>
+</tr>
+<tr>
+<td>Setting up Unity to work with version control 46</td>
+</tr>
+<tr>
+<td>Editor project settings 46</td>
+</tr>
+<tr>
+<td>Perforce Helix Core 46</td>
+</tr>
+<tr>
+<td>UVCS 48</td>
+</tr>
+<tr>
+<td>Git and other solutions 50</td>
+</tr>
+<tr>
+<td>What to ignore 50</td>
+</tr>
+<tr>
+<td>Working with large files 51</td>
+</tr>
+<tr>
+<td>Best practices for version control 53</td>
+</tr>
+<tr>
+<td>Commit little, commit often 53</td>
+</tr>
+<tr>
+<td>Keep commit messages clean 54</td>
+</tr>
+<tr>
+<td>Avoid indiscriminate commits 54</td>
+</tr>
+<tr>
+<td>Get the latest 55</td>
+</tr>
+<tr>
+<td>Know your toolset 57</td>
+</tr>
+<tr>
+<td>Feature branches and Git Flow 58</td>
+</tr>
+<tr>
+<td>Pull requests 60</td>
+</tr>
+<tr>
+<td>Get started with UVCS in Unity 6 62</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Use UVCS in a Unity project 63</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Inviting other team members 65</td>
+<td></td>
+</tr>
+<tr>
+<td>Check in Changes 67</td>
+<td></td>
+</tr>
+<tr>
+<td>The UVCS desktop client 69</td>
+<td></td>
+</tr>
+<tr>
+<td>Using Gluon 71</td>
+<td></td>
+</tr>
+<tr>
+<td>UVCS desktop app 74</td>
+<td></td>
+</tr>
+<tr>
+<td>Branches 74</td>
+<td></td>
+</tr>
+<tr>
+<td>Handling conflicts 77</td>
+<td></td>
+</tr>
+<tr>
+<td>Merge rules 79</td>
+<td></td>
+</tr>
+<tr>
+<td>Locking files84</td>
+<td></td>
+</tr>
+<tr>
+<td>Monitoring or removing a repository 87</td>
+<td></td>
+</tr>
+<tr>
+<td>Unity support 89</td>
+<td></td>
+</tr>
+<tr>
+<td>Build the foundation for your live game 90</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Unity Gaming Services 90</td>
+<td></td>
+</tr>
+<tr>
+<td>Multiplayer 90</td>
+<td></td>
+</tr>
+<tr>
+<td>Community 91</td>
+<td></td>
+</tr>
+<tr>
+<td>Accounts 91</td>
+<td></td>
+</tr>
+<tr>
+<td>Content management 91</td>
+<td></td>
+</tr>
+<tr>
+<td>Crash reporting 92</td>
+<td></td>
+</tr>
+<tr>
+<td>Game economy 92</td>
+<td></td>
+</tr>
+<tr>
+<td>Engagement and analytics 92</td>
+<td></td>
+</tr>
+<tr>
+<td>Unity Grow 93</td>
+<td></td>
+</tr>
+<tr>
+<td>User acquisition 93</td>
+<td></td>
+</tr>
+<tr>
+<td>Monetization93</td>
+<td></td>
+</tr>
+<tr>
+<td>Conclusion 94</td>
+</tr>
+</tbody>
+</table>
+<h2 id="-span-id-page-4-0-span-introduction"><span id="page-4-0"></span>Introduction</h2>
+<p>Software development becomes a different beast when you move from working on your own to with a team. Where do you store the project so that every team member has access to it? What happens if more than one person works on the same file at the same time? Programmers often understand the concepts behind source control, but what about artists and other non-technical team members? How can you minimize the amount of support they need from programmers, so they don&#39;t have to worry about doing something wrong?</p>
+<p>Source control, or version control, can be a daunting topic for game developers, especially if you&#39;re not from a technical background. But it doesn&#39;t need to be that way. There are a number of tools that integrate with Unity to help your team work effectively with versioning.</p>
+<p>This guide explains the key concepts of version control, compares some of the different version control systems (VCS) available, and provides an introduction to additional Unity DevOps tools like Unity Asset Manager, engagement and analytics, game economy, multiplayer services, and more. It provides tips and tricks you can use when setting up your Unity project to help ensure team collaboration is smooth and efficient. Finally, you&#39;ll pick up some version control best practices for working successfully in a team.</p>
+<h2 id="-span-id-page-5-0-span-source-control-vs-version-control"><span id="page-5-0"></span>Source control vs version control</h2>
+<p>In the beginning of computing, all software development was pure code. Even as 3D graphics evolved, everything was still described as code. As such, the term &quot;source control&quot; was used to describe the systems in place to manage the project&#39;s contents, while the term source code management, or SCM, was given as a label for those tools.</p>
+<p>Moving into the modern era of software and game development, we now work with a lot more than just the source code. 3D model formats, such as FBX, textures, materials, audio files, and more, mean that SCMs now have to handle more than just text file changes. The term &quot;source control&quot; no longer covers what we need, and thus &quot;version control system&quot; or VCS, became a more apt description and is now the common label given to the tools used.</p>
+<p>The terms can still be used interchangeably. However, when talking about Unity projects that often deal with large binary assets, version control and VCS are most accurate, so that&#39;s how they&#39;ll be referred to throughout the rest of the guide.</p>
+<p>Three of the main version control systems that work best with Unity are Unity Version Control (UVCS), (formerly known as Plastic SCM),<sup>1</sup> Git, and Perforce Helix Core. This guide presents the benefits and shortcomings of these systems when working as a team on a Unity project.</p>
+<p><sup>1</sup> Plastic SCM <a href="https://blog.plasticscm.com/2020/08/codice-software-is-now-part-of-unity.html">joined</a> the Unity family in 2020, which means that these tools are closely integrated into the Unity Editor.</p>
+<h2 id="-span-id-page-6-0-span-foundational-concepts"><span id="page-6-0"></span>Foundational concepts</h2>
+<p>This section covers some of the core concepts of version control. If you don&#39;t know your &quot;commit&quot; from your &quot;push&quot;, this section will help you understand version control terminology.</p>
+<h3 id="how-version-control-works">How version control works</h3>
+<p>Version control allows you to keep a historical record of your entire project. It brings organization to your work and enables teams to iterate efficiently.</p>
+<p>Project files are stored in a shared database called a repository, or &quot;repo.&quot; You backup your project at regular intervals to the repo, and if something goes wrong, you can revert back to an earlier version of the project.</p>
+<p>With a VCS, you can make multiple individual changes and commit them as a single group for versioning. This commit sits as a point on the timeline of your project, so that if you need to revert back to a previous version, everything from that commit is undone and restored to the state it was at the time. You can review and modify each change grouped within a commit or undo the commit entirely.</p>
+<p>With access to the project&#39;s entire history, it&#39;s easier to identify which changes introduced bugs, restore previously removed features, and easily document changes between your game or product releases.</p>
+<p>What&#39;s more, because version control is typically stored in the cloud or on a distributed server, it supports your development team&#39;s collaboration from wherever they&#39;re working – an increasingly important benefit as remote work becomes commonplace.</p>
+<p><span id="page-7-0"></span><img src="_page_7_Picture_0.jpeg" alt=""></p>
+<h2 id="why-use-version-control-">Why use version control?</h2>
+<p>Aside from the reasons mentioned above, version control is useful for making experimental changes. You can add a new feature in your local version of the project, and if things don&#39;t work out, you just revert your changes to go back to working on a clean, functional version of the project.</p>
+<p>You can iterate on experimental ideas, and if you need to help out on a major issue in the main project, version control allows you to save your changes for a later date. Then you can get your local version back to the main branch to help out with whatever needs to be worked on. Once you&#39;re done, you can restore and carry on with the experimental work.</p>
+<p>Most version control systems prevent you from accidentally overwriting work that someone else in your team has done. As you commit your work to the repository, you will also need to &quot;pull&quot; the latest updates from the repository. This allows you to check that someone else hasn&#39;t been working on the same file as you. This is also known as the dreaded &quot;merge conflict,&quot; one of the things that can be scary to people who are not used to version control. However, merge conflicts can usually be resolved easily once you understand the tools. Unity Version Control (UVCS) uses smart locks which helps to reduce the risk of merge conflicts by checking to ensure that locked files on any branch are the latest revision of that file.</p>
+<h2 id="centralized-vs-distributed-version-control">Centralized vs distributed version control</h2>
+<p>For the most part, version control systems fall into one of two categories: centralized or distributed. Depending on which kind of version control system you work with, some of the terms outlined below will apply, some won&#39;t, and some may even have a different meaning. Let&#39;s take a look at the differences between these two categories.</p>
+<h4 id="-centralized-"><strong>Centralized</strong></h4>
+<p>The first key difference between centralized and distributed systems is where the repo resides. Many companies choose the centralized option to keep the servers hosting their proprietary software on-site. Source control security is often an important factor in choosing this kind of system. A centralized system doesn&#39;t have to mean on-site servers since the repo can still be hosted in the cloud, but this setup is less common than in distributed systems.</p>
+<p><img src="_page_7_Figure_10.jpeg" alt=""></p>
+<p><span id="page-8-0"></span><img src="_page_8_Picture_0.jpeg" alt=""></p>
+<p>The other key difference between the two approaches is <em>how</em> users deploy their changes to the repo. Centralized version control is often seen as the more straightforward option. When working with a centralized repo, changes are fetched from and sent to the repository directly. This process is called updating from and committing to the repo.</p>
+<p>The downside to this setup is that users must be connected to the server to submit any work. To avoid conflicts, users can lock files for modification. This is known as checking out the file, and it prevents anyone else from committing changes until the file is checked back in.</p>
+<p>In a centralized workflow, a user only ever has the latest version of the project files on their workstation, and the server holds the project&#39;s entire history.</p>
+<h4 id="-distributed-"><strong>Distributed</strong></h4>
+<p>In a distributed workflow, there is still a single location where the repo lives, usually on a cloud service such as GitHub, but users clone the entire project history to their workstation. This allows users to work on their own local copy and commit changes quickly since they don&#39;t need to be connected to a central server. To send those changes so others can access them later, the user needs to push them to the server and pull any other changes down. However, they don&#39;t need to be always working with the latest files like on a centralized system.</p>
+<p>Working this way allows you to create a group of changesets that perhaps equate to a larger feature before pushing them up for the rest of your team. In fact, it&#39;s encouraged to commit little and often, but we will get to those best practices later on.</p>
+<p><img src="_page_8_Figure_8.jpeg" alt=""></p>
+<p><span id="page-9-0"></span><img src="_page_9_Picture_0.jpeg" alt=""></p>
+<p>File locking is still available in some distributed workflows, however, it&#39;s less common since you can handle merges more easily. By pulling the latest changes from the server to your local project, you can compare anyone else&#39;s changes to your own to be sure there are no conflicts before pushing your changes to the repo.</p>
+<p>While the distributed approach is often preferred, it also has a few disadvantages. Firstly, having the entire project history on local machines takes up a lot of space, especially for teams working with binary file types. Git has an option called Large File Storage (LFS), which converts the history of certain files to text pointers, offloading some of the weight. However, other files have the entire history, and repos can end up with a load of old or stale test data. Studios working with small M2 drives may then find the size of the repo gets bloated with old versions, overloading their drives.</p>
+<p>Secondly, as developers don&#39;t have to stay in contact with a central server, they can end up working in isolation for long periods. Their local version can become quite detached from the main repository, and when it comes time to merge their changes back in, this may be more work than they bargained for.</p>
+<h4 id="-typical-workflow-"><strong>Typical workflow</strong></h4>
+<p>In brief, here are the steps in a workflow for a centralized system and a distributed one:</p>
+<h4 id="centralized">Centralized</h4>
+<ul>
+<li><ol>
+<li>Update your working copy with changes from the server.</li>
+</ol>
+</li>
+<li><ol>
+<li>Make your changes.</li>
+</ol>
+</li>
+<li><ol>
+<li>Commit your changes to the central server.</li>
+</ol>
+</li>
+<li>Distributed</li>
+<li><ol>
+<li>Pull any remote changes into your local repo.</li>
+</ol>
+</li>
+<li><ol>
+<li>Make your changes.</li>
+</ol>
+</li>
+<li><ol>
+<li>Commit your changes.</li>
+</ol>
+</li>
+<li><ol>
+<li>Perform steps 2 and 3 as many times as you like.</li>
+</ol>
+</li>
+<li><ol>
+<li>Push all commits back to the remote repo.</li>
+</ol>
+</li>
+</ul>
+<p>This guide focuses on three main version control systems: UVCS, Git, and Perforce Helix Core. A detailed walkthrough of each VCS starts in the section <a href="#page-37-0">&quot;Version control systems</a>&quot;, but here&#39;s a brief introduction to each one and the workflow it supports:</p>
+<ul>
+<li><a href="https://unity.com/solutions/version-control">Unity Version Control</a> or UVCS (both): UVCS is a flexible version control system with unique interfaces to support programmers and artists alike. It excels at handling large repos and binary files, and as both a file-based and changeset-based solution, it gives you the capability to download only the specific files you&#39;re working on, rather than the entire project build.</li>
+<li><a href="https://git-scm.com/">Git</a> (distributed): This is one of the most popular version control systems around. Git is open source, free, and flexible. As a platform Git is a command line-only tool. But many different GUIs have been developed for it, making the system more accessible to users.</li>
+</ul>
+<p><span id="page-10-0"></span><img src="_page_10_Picture_0.jpeg" alt=""></p>
+<p>There can often be some confusion between Git and <a href="https://github.com/">GitHub</a>. GitHub is a hosting service for Git repositories, but you can use Git without using GitHub. That said, as any experienced developer reading this will know, GitHub is a very popular service because there is a free version (with some limitations), and it doesn&#39;t require any custom server setups.</p>
+<p>— <a href="https://www.perforce.com/products/helix-core">Perforce Helix Core</a> (centralized): This is an enterprise-level version control system generally used by large game studios because it features centralized repos that are most often hosted on their own servers.</p>
+<h3 id="key-terms">Key terms</h3>
+<p>Here are the terms for some of the key features and processes in a VCS:</p>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Repository/repo</td>
+<td>This is the database of all the changes and edits to your project.<br>Stored on a server, either on-site or in the cloud, it holds the full<br>history of the project.</td>
+</tr>
+<tr>
+<td>Working copy</td>
+<td>This is your local version of the project. Sometimes also called<br>a checkout or workspace. You make changes to your working<br>copy, and, when you&#39;re happy with them, commit them to the<br>repository.</td>
+</tr>
+<tr>
+<td>Commit/check in</td>
+<td>A commit encodes file modifications. A centralized workflow<br>sends those changes to the server and is more commonly<br>called checking in. In a distributed workflow, it adds them to the<br>changeset that needs to later be pushed to the server.</td>
+</tr>
+<tr>
+<td>Pull/update/check out</td>
+<td>Pulling or updating retrieves the latest changes available on the<br>server. Check out is the more common term when working in a<br>centralized workflow.</td>
+</tr>
+<tr>
+<td>Locking</td>
+<td>Locking a file prevents it from being edited by another user. You<br>are telling the server, &quot;I&#39;m working on this; please don&#39;t make any<br>other changes.&quot; Locking is generally not supported in distributed<br>workflows.</td>
+</tr>
+<tr>
+<td>Clone</td>
+<td>In a distributed workflow, cloning a repo is how you initially get a<br>copy of the project and its entire history onto your local machine.</td>
+</tr>
+<tr>
+<td>Tags</td>
+<td>Tags are special notes that can be added to a commit. They are<br>often used to mark a point in time where a build was made.</td>
+</tr>
+<tr>
+<td>Branch</td>
+<td>A branch creates a new copy of the codeline, which can then<br>be worked on in parallel. This allows someone to work on parts<br>of the project in isolation, for example a new feature, without<br>affecting the main line of development.</td>
+</tr>
+</tbody>
+</table>
+<p><img src="_page_11_Picture_0.jpeg" alt=""></p>
+<table>
+<thead>
+<tr>
+<th>Merge</th>
+<th>Merging can happen either when a branch is finished and needs<br>to be merged back into the main line, or even just when two<br>people make changes around the same time. The two changesets<br>will need to be compared and merged together to create the new<br>working copy. Most merges can be handled automatically.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>A conflict is what happens when merges cannot be handled<br>automatically. This usually occurs when two people have made<br>changes to the same lines of code or the same binary file.</td>
+</tr>
+<tr>
+<td>Conflict</td>
+<td>Code conflicts can usually be resolved by comparing the text and<br>working out which changes should be accepted, or even whether<br>both can be brought together in a way.</td>
+</tr>
+<tr>
+<td></td>
+<td>For binary files, such as Unity scenes or Prefabs, merging a<br>conflict becomes a lot trickier. However, sometimes a quick<br>conversation with the other contributor is the easiest way to<br>resolve what changes make the most sense to keep.</td>
+</tr>
+<tr>
+<td>Pull request</td>
+<td>When work on a branch is complete, it&#39;s good practice to open<br>a pull request. This signals to the rest of your team that work on<br>that branch is complete and ready to be merged back into the<br>main line. This system gives team leads and/or seniors a chance<br>to review the changes before accepting them back into the main<br>branch.</td>
+</tr>
+<tr>
+<td>Head</td>
+<td>Head refers to the latest commit on your working copy.</td>
+</tr>
+<tr>
+<td>Reset/revert</td>
+<td>Depending on your VCS, reset or revert can be used to discard all<br>your local changes back to their state at the head.</td>
+</tr>
+<tr>
+<td>Index</td>
+<td>The Git index is a file that describes all the current changes you<br>have in your working copy. These changes sit in what&#39;s known as<br>the staging area, where you can select which changes you want<br>to add to your next commit.</td>
+</tr>
+<tr>
+<td>Git stash</td>
+<td>If you have some changes that aren&#39;t ready yet for a commit, but<br>you need to move onto some different work, you can use a stash<br>to save those changes in a temporary file and reset your working<br>copy back to head.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="-span-id-page-12-0-span-best-practices-for-organizing-a-unity-project"><span id="page-12-0"></span>Best practices for organizing a Unity project</h2>
+<p>Regardless of which VCS you choose, there are some generally recommended practices that will help streamline your version control workflow when working in Unity. First, let&#39;s take a look at some of the different ways your team can work together effectively.</p>
+<h2 id="project-organization">Project organization</h2>
+<h4 id="-folder-structure-"><strong>Folder structure</strong></h4>
+<p>Although there is no single way to organize your project, in general, follow these recommendations.</p>
+<ul>
+<li>Define and document your naming conventions and folder structure as a team. A style guide and/or project template makes your files easier to find and organize. Pick what works for your team, and make sure everyone is on board with it.</li>
+<li>Be consistent with your naming convention. Don&#39;t deviate from your chosen style guide or template. If you do need to amend your naming rules, parse and rename your affected assets all at once. In cases where the changes affect a large number of files, consider automating the update using a script.</li>
+<li>Don&#39;t use spaces in file and folder names. Use CamelCase as an alternative for spaces.</li>
+<li>Separate testing or sandbox areas. Create a separate folder for non-production scenes and experimentation. Subfolders with usernames can divide your work area by team member.</li>
+<li>Avoid extra folders at the root level. In general, store your content files within the Assets folder. Don&#39;t create additional folders at the project&#39;s root level unless it&#39;s absolutely necessary.</li>
+</ul>
+<p><img src="_page_13_Picture_0.jpeg" alt=""></p>
+<p>— Keep your internal assets separate from third-party ones. If you are using assets from the Asset Store or other plug-ins, odds are they have their own project structure. Keep your assets separate.</p>
+<p>If you find yourself modifying a third-party asset or plug-in for your project, then version control can really help you out when you need to get the latest update for the plug-in. Once the update is imported, you can look through the diff to find where your modifications may have been overwritten and reimplement them.</p>
+<p>While there is no set folder structure, here are a couple of examples of how you might set up your Unity project. These structures are based on splitting up your project by asset type. The <a href="https://docs.unity3d.com/6000.0/Documentation/Manual/AssetTypes.html">Asset Types</a> manual page describes the most common assets in greater detail. You can use the Template or Learn projects as an example of organizing your folder structure. While you&#39;re not limited to these folder names, they should give you a good starting point.</p>
+<h4 id="-example-1-"><strong>Example 1</strong></h4>
+<table>
+<thead>
+<tr>
+<th>Assets</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+---Art</td>
+</tr>
+<tr>
+<td>+---Materials</td>
+</tr>
+<tr>
+<td>+---Models</td>
+</tr>
+<tr>
+<td>+---Textures</td>
+</tr>
+<tr>
+<td>+---Audio</td>
+</tr>
+<tr>
+<td>+---Music</td>
+</tr>
+<tr>
+<td>---Sound</td>
+</tr>
+<tr>
+<td>+---Code</td>
+</tr>
+<tr>
+<td>+---Scripts # C# scripts</td>
+</tr>
+<tr>
+<td>---Shaders # Shader files and shader graphs</td>
+</tr>
+<tr>
+<td>+---Docs<br># Wiki, concept art, marketing material</td>
+</tr>
+<tr>
+<td>+---Level<br># Anything related to game design in Unity</td>
+</tr>
+<tr>
+<td>+---Prefabs</td>
+</tr>
+<tr>
+<td>+---Scenes</td>
+</tr>
+<tr>
+<td>---UI</td>
+</tr>
+</tbody>
+</table>
+<p><img src="_page_14_Picture_0.jpeg" alt=""></p>
+<table>
+<thead>
+<tr>
+<th>Example 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Assets</td>
+</tr>
+<tr>
+<td>+---Art</td>
+</tr>
+<tr>
+<td>+---Materials</td>
+</tr>
+<tr>
+<td>+---Models</td>
+</tr>
+<tr>
+<td>+---Music</td>
+</tr>
+<tr>
+<td>+---Prefabs</td>
+</tr>
+<tr>
+<td>+---Sound</td>
+</tr>
+<tr>
+<td>+---Textures</td>
+</tr>
+<tr>
+<td>+---UI</td>
+</tr>
+<tr>
+<td>+---Levels</td>
+</tr>
+<tr>
+<td>+---Src</td>
+</tr>
+<tr>
+<td>+---Framework</td>
+</tr>
+<tr>
+<td>---Shaders</td>
+</tr>
+</tbody>
+</table>
+<p>If you download one of the template or starter projects from the Unity Hub, you&#39;ll find that those projects have their subfolders split up based on asset type, as seen in the image below.</p>
+<table>
+<thead>
+<tr>
+<th>Unity Hub 3.8.0</th>
+<th></th>
+<th>- 0 ×</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>New project<br>Editor Version: 6000.0.5f1</td>
+<td></td>
+</tr>
+<tr>
+<td>II All templates</td>
+<td>Q Search Sample templates</td>
+<td></td>
+</tr>
+<tr>
+<td>Core<br>&amp; Sample</td>
+<td>Universal 3D sample<br>1<br>Sample</td>
+<td>0</td>
+</tr>
+<tr>
+<td>· Learring</td>
+<td>High Definition 3D sample<br>0<br>Sample</td>
+<td>0<br>Universal 3D sample</td>
+</tr>
+<tr>
+<td></td>
+<td>VR Multiplayer<br>4<br>Sample</td>
+<td>These four environments showcase the<br>versatility, scalability, and customizability of the<br>0<br>Universal Render Pipeline (URP). The project<br>Read more</td>
+</tr>
+<tr>
+<td></td>
+<td>Cinematic Studio<br>1<br>Sample</td>
+<td>0<br>· Download template</td>
+</tr>
+</tbody>
+</table>
+<p>Templates available to download in the Unity Hub</p>
+<p>Depending on which template you&#39;ve chosen, you should see subfolders that represent several common assets. Here is one way to organize by type:</p>
+<table>
+<thead>
+<tr>
+<th>Animations</th>
+<th>Animations contain animated motion clips and their controller files.<br>These can also contain Timeline assets for in-game cinematics or rigging<br>information for procedural animation.</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Audio</td>
+<td>Sound assets include audio clips as well as the mixers used for blending the<br>effects and music.</td>
+<td></td>
+</tr>
+<tr>
+<td>Editor</td>
+<td>Here you&#39;ll find the scripted tools made for use with the Unity Editor but not<br>appearing in a target build.</td>
+<td></td>
+</tr>
+<tr>
+<td>Fonts</td>
+<td>This folder contains the fonts used in the game.</td>
+<td></td>
+</tr>
+<tr>
+<td>Materials</td>
+<td>These assets describe surface shading properties.</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Meshes</th>
+<th>Store models created in an external digital content creation (DCC)<br>application here.</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Particles</td>
+<td>The particle simulations in Unity, created either with the Built-In Particle<br>System or Visual Effect Graph.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Prefabs</td>
+<td>These are reusable GameObjects with prebuilt Components.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Scripts</td>
+<td>All user-developed code for gameplay appears here.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Scenes</td>
+<td>Unity stores small, functional portions of your project into Scene assets.<br>They often correspond to game levels or part of a level.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Settings</td>
+<td>This can be used for storing render pipeline settings, such as for the High<br>Definition Render Pipeline (HDRP) and Universal Render Pipeline (URP).</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Shaders</td>
+<td>These programs run on the GPU as part of the graphics pipeline.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Textures</td>
+<td>Image files can consist of texture files for materials and surfacing, UI<br>overlay elements for user interface, and lightmaps to store lighting<br>information.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ThirdParty</td>
+<td>If you have assets from an external source like the Asset Store, keep them<br>separated from the rest of your project here. This makes updating your<br>third-party assets and scripts easier.<br>Third-party assets may have a set structure that cannot be altered.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>UI</td>
+<td>If you&#39;re using UI Toolkit, your UXML and USS files are stored here.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><img src="_page_15_Figure_2.jpeg" alt=""></p>
+<p>Defining a good project structure in the beginning will avoid version control issues later. If you move assets from one folder to another, many VCS will see that as just deleting one file and adding another, rather than the file being moved. This loses the history of the original file.</p>
+<p>UVCS can handle file moves within Unity and maintains the history of any file that&#39;s moved. However, it&#39;s essential that when you move a file, you do it in the Unity Editor so that the .meta file moves with the asset file.</p>
+<p>The sample scene with the URP template includes a number of asset folders.</p>
+<p><img src="_page_16_Picture_0.jpeg" alt=""></p>
+<p><img src="_page_16_Picture_1.jpeg" alt=""></p>
+<p>Tracking file movements</p>
+<p>Once you&#39;ve decided on a folder structure for your projects, use an Editor script to reuse the template and create the same folder structure for all projects moving forward. When it&#39;s placed in an Editor folder, the script below will create a root folder in Assets matching the &quot;PROJECT_ NAME&quot; variable. Doing this keeps your own work separate from third-party packages.</p>
+<pre><code><span class="hljs-keyword">using</span> UnityEditor;
+<span class="hljs-keyword">using</span> UnityEngine;
+<span class="hljs-keyword">using</span> System.Collections.Generic;
+<span class="hljs-keyword">using</span> System.IO;
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> CreateFolders : EditorWindow {
+ <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">string</span> projectName = <span class="hljs-string">"PROJECT_NAME"</span>;
+ [MenuItem(<span class="hljs-string">"Assets/Create Default Folders"</span>)]
+ <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> SetUpFolders()
+ {
+ CreateFolders window = 
+ScriptableObject.CreateInstance&lt;CreateFolders&gt;();
+ window.<span class="hljs-built_in">position</span> = <span class="hljs-keyword">new</span> Rect(Screen.<span class="hljs-built_in">width</span>/<span class="hljs-number">2</span>, Screen.<span class="hljs-built_in">height</span>/<span class="hljs-number">2</span>, <span class="hljs-number">400</span>, <span class="hljs-number">150</span>);
+ window.ShowPopup();
+ }
+ <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> CreateAllFolders()
+ {
+ List&lt;<span class="hljs-keyword">string</span>&gt; folders = <span class="hljs-keyword">new</span> List&lt;<span class="hljs-keyword">string</span>&gt;
+ {
+ <span class="hljs-string">"Animations"</span>,
+ <span class="hljs-string">"Audio"</span>,
+ <span class="hljs-string">"Editor"</span>,
+ <span class="hljs-string">"Materials"</span>,
+ <span class="hljs-string">"Meshes"</span>,
+ <span class="hljs-string">"Prefabs"</span>,
+ <span class="hljs-string">"Scripts"</span>,
+</code></pre><p><img src="_page_17_Picture_0.jpeg" alt=""></p>
+<pre><code> <span class="hljs-string">"Scenes"</span>,
+ <span class="hljs-string">"Shaders"</span>,
+ <span class="hljs-string">"Textures"</span>,
+ <span class="hljs-string">"UI"</span> 
+ };
+ <span class="hljs-keyword">foreach</span> (<span class="hljs-keyword">string</span> folder <span class="hljs-keyword">in</span> folders)
+ {
+ <span class="hljs-keyword">if</span> (!Directory.Exists(<span class="hljs-string">"Assets/"</span> + folder))
+ {
+ Directory.CreateDirectory(<span class="hljs-string">"Assets/"</span> + projectName + <span class="hljs-string">"/"</span> + folder);
+ }
+ }
+ List&lt;<span class="hljs-keyword">string</span>&gt; uiFolders = <span class="hljs-keyword">new</span> List&lt;<span class="hljs-keyword">string</span>&gt;
+ {
+ <span class="hljs-string">"Assets"</span>,
+ <span class="hljs-string">"Fonts"</span>,
+ <span class="hljs-string">"Icon"</span>
+ };
+ <span class="hljs-keyword">foreach</span> (<span class="hljs-keyword">string</span> subfolder <span class="hljs-keyword">in</span> uiFolders)
+ {
+ <span class="hljs-keyword">if</span> (!Directory.Exists(<span class="hljs-string">"Assets/"</span> + projectName + <span class="hljs-string">"/UI/"</span> + subfolder))
+ {
+ Directory.CreateDirectory(<span class="hljs-string">"Assets/"</span> + projectName + <span class="hljs-string">"/UI/"</span> + subfolder);
+ }
+ }
+ AssetDatabase.Refresh();
+ }
+ <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">OnGUI</span>(<span class="hljs-params"></span>)
+ </span>{
+ EditorGUILayout.LabelField(<span class="hljs-string">"Insert the Project name used as the root folder"</span>);
+ projectName = EditorGUILayout.TextField(<span class="hljs-string">"Project Name: "</span>,projectName);
+ <span class="hljs-keyword">this</span>.Repaint();
+ GUILayout.Space(<span class="hljs-number">70</span>);
+ <span class="hljs-keyword">if</span> (GUILayout.Button(<span class="hljs-string">"Generate!"</span>)) {
+ CreateAllFolders();
+ <span class="hljs-keyword">this</span>.Close();
+ }
+ }
+}
+</code></pre><p><span id="page-18-0"></span><img src="_page_18_Picture_1.jpeg" alt=""></p>
+<p>Go to menu &gt; Assets &gt; Create Default Folders. Creating empty folders at the start of your project will help keep your teamwork organized and efficient.</p>
+<h3 id="-empty-folders-"><strong>Empty folders</strong></h3>
+<p>Empty folders like those shown in the previous images can present a bit of an issue in version control – so only create the folders for what you need. With Git and Perforce, empty folders are ignored by default. If these project folders are set up and someone attempts to commit them, they&#39;ll be unable to until something is placed in the folder.</p>
+<p><strong>Note</strong>: A common workaround is to place a &quot;.keep&quot; file inside an empty folder. This is enough for the folder to then be committed to the repository.</p>
+<p>UVCS can handle empty folders. Directories are treated as entities and have a version history associated with them.</p>
+<p>This is a point to note when working in Unity. Unity generates a .meta file for every file in the project, including folders. With Git and Perforce, a user can easily commit the .meta file for an empty folder, but the folder itself won&#39;t end up under version control. When another user gets the latest changes, there will be a .meta file for a folder that doesn&#39;t exist on their machine, and Unity will then delete the .meta file. UVCS avoids this issue by including empty folders under version control.</p>
+<p><span id="page-19-0"></span><img src="_page_19_Picture_0.jpeg" alt=""></p>
+<h4 id="-the-meta-file-"><strong>The .meta file</strong></h4>
+<p>Unity generates a .meta file for every other file inside the project, and while it&#39;s typically inadvisable to include auto-generated files in version control, the .meta file is a little different. Visible Meta Files mode should be turned on in the Version Control window (unless you&#39;re using UVCS or Perforce modes).</p>
+<table>
+<thead>
+<tr>
+<th>Project Settings</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td>್</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Adaptive Performance<br>Audio<br>Burst AOT Settings</td>
+<td>Version Control</td>
+<td></td>
+<td></td>
+<td>0 元</td>
+<td>15</td>
+</tr>
+<tr>
+<td>Editor<br>Graphies<br>Input Manager</td>
+<td>Mode</td>
+<td></td>
+<td>Visible Meta Files</td>
+<td></td>
+<td>A</td>
+</tr>
+<tr>
+<td>Input System Package<br>Settings<br>Memory Settings<br>Package Manager</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Physics<br>1<br>Settings<br>Physics 2D</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Player<br>Preset Manager<br>Quality<br>Scene Template</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Script Execution Order<br>Services</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Unity Cloud<br>ShaderGraph</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Tags and Layers</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>TextMesh Pro</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Time</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Timeline</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Ul Toolkit<br>Version Control</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Unity Version Control Settings</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Visual Scripting</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>XR Plugin Management</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Turn on Visible Meta Files when working with Git.</p>
+<p>While the .meta file is auto-generated, it also holds a lot of information about the file with which it&#39;s associated. This is common with assets that have import settings, such as Textures, meshes, audio clips, etc. When you change any import settings on these files, the changes are written into the .meta file, not the asset file. This is why you commit the .meta files to your repository, so everyone works with the same file settings.</p>
+<p><span id="page-20-0"></span><img src="_page_20_Picture_0.jpeg" alt=""></p>
+<p><img src="_page_20_Figure_1.jpeg" alt=""></p>
+<p>Changes to a .meta file when import settings were adjusted on a file</p>
+<h3 id="-naming-standards-"><strong>Naming standards</strong></h3>
+<p>Agreeing on standards doesn&#39;t stop with project folder structure. Setting a naming standard for GameObjects in a scene or prefabs inside project folders can make things easier for your team to understand when you end up working in one another&#39;s files.</p>
+<p>Though there is no definitive naming standard for GameObjects, consider the following.</p>
+<table>
+<thead>
+<tr>
+<th>Standard</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Use descriptive names and don&#39;t abbreviate.<br>Use names that you will remember several<br>months from now. Consider whether another<br>person will understand your notation, and choose<br>names that you can pronounce and remember.<br>For this reason abbreviations are generally not<br>recommended.</td>
+<td>largeButton, LargeButton, or leftButton<br>NOT:<br>lButton</td>
+</tr>
+<tr>
+<td>Use Camel case/Pascal case.<br>Avoid spaces in your object names. Camel case<br>or Pascal case improve readability (and typing<br>accuracy according to this study).</td>
+<td>OutOfMemoryException,<br>dateTimeFormat,<br>NOT:<br>Outofmemoryexception,<br>datetimeformat</td>
+</tr>
+</tbody>
+</table>
+<p><span id="page-21-0"></span></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Active States:</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Use underscores (or hyphens) sparingly. Avoid<br>underscores and hyphens in general. However,<br>they can be useful in certain circumstances.<br>Prefixing a name with an underscore puts it<br>alphabetically first. You can also use underscores<br>to denote variants of a specific object.</td>
+<td>EnterButton<em>Active, EnterButton</em><br>Inactive</td>
+</tr>
+<tr>
+<td></td>
+<td>Texture Maps:</td>
+</tr>
+<tr>
+<td></td>
+<td>Foliage_Diffuse, Foliage_Normalmap</td>
+</tr>
+<tr>
+<td></td>
+<td>Level of Detail:</td>
+</tr>
+<tr>
+<td></td>
+<td>Building_LOD1, Building_LOD0</td>
+</tr>
+<tr>
+<td>Use number suffixes to denote a sequence.</td>
+<td>For a path, name the nodes:</td>
+</tr>
+<tr>
+<td>Likewise, don&#39;t suffix with a number if it&#39;s not<br>part of a list.</td>
+<td>Node0, Node1, Node2, etc.</td>
+</tr>
+<tr>
+<td>Follow the design document naming.</td>
+<td>If your design document names<br>locations like HighSpellTower or<br>RedDragonLair, use those exact<br>spellings.</td>
+</tr>
+</tbody>
+</table>
+<p>Agreeing on a consistent style across your team can result in a cleaner, more readable and scalable project. The Unity e-book, <em><a href="https://unity.com/resources/create-code-c-sharp-style-guide-e-book?isGated=false">Create a C# style guide: Write cleaner code that scales</a></em>, provides tips and best practices for naming conventions, formatting, classes, methods, comments and more. Overall the guide follows <a href="https://docs.microsoft.com/en-us/dotnet/csharp/fundamentals/coding-style/coding-conventions">Microsoft C# style standards 2</a>, providing a Unity-specific subset of that, but there is no one &quot;true&quot; method; the <a href="https://google.github.io/styleguide/csharp-style.html">Google C# 2</a> guide is also a great resource for defining guidelines around naming, formatting, and commenting conventions.</p>
+<h4 id="-workflow-optimization-"><strong>Workflow optimization</strong></h4>
+<p>Aside from how and where you keep your assets inside the Assets folder, there are several design and development choices you can make to help speed up your workflow, especially when you&#39;re using version control.</p>
+<h4 id="split-up-your-assets">Split up your assets</h4>
+<p>Large, single Unity scenes do not lend themselves well to collaboration. Break your levels into many smaller scenes so that artists and designers can collaborate better on a single level while minimizing the risk of conflicts.</p>
+<p>At runtime, your project can load scenes additively using SceneManager.LoadSceneAsync passing the LoadSceneMode.Additive parameter mode.</p>
+<p>Additionally, break work up into Prefabs where possible. If you need to make changes later, you can change the Prefab rather than the scene it&#39;s used in to avoid conflicts with anyone working on the scene. Prefab changes can often be easier to read when doing a diff under version control.</p>
+<p><span id="page-22-0"></span><img src="_page_22_Picture_0.jpeg" alt=""></p>
+<p>And if you end up with a scene conflict, <a href="https://unity.com/blog/engine-platform/understanding-unitys-serialization-language-yaml">Unity also has a built-in YAML</a> (a human-readable, data-serialization language) tool specifically for merging scenes and Prefabs. For more information, see <a href="https://docs.unity3d.com/6000.0/Documentation/Manual/SmartMerge.html?">Smart merge</a> in the Unity documentation.</p>
+<h4 id="presets">Presets</h4>
+<p>Unity presets are predefined configurations that allow you to save and reuse specific settings across different components, assets, or tools within a project. Creating a <a href="https://docs.unity3d.com/6000.0/Documentation/Manual/Presets.html">Preset</a> lets you copy the settings of a component or asset, save it as an asset, then apply the same settings to another item later.</p>
+<p>Use Presets to enforce standards or to apply reasonable defaults to new assets. This ensures consistent standards across your team, so commonly overlooked settings don&#39;t impact your project&#39;s performance.</p>
+<table>
+<thead>
+<tr>
+<th>1<br>Transform</th>
+<th></th>
+<th></th>
+<th></th>
+<th>9 花</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Position</td>
+<td>X 0</td>
+<td>Y O</td>
+<td>ZO</td>
+<td></td>
+</tr>
+<tr>
+<td>Rotation</td>
+<td>X 0</td>
+<td>Y O</td>
+<td>ZO</td>
+<td></td>
+</tr>
+<tr>
+<td>Scale</td>
+<td>×1</td>
+<td>Y 1</td>
+<td>Z1</td>
+</tr>
+</tbody>
+</table>
+<p>The Preset icon is highlighted here in red.</p>
+<p>Click the Preset icon to the top right of the component. Click <strong>Save current to…</strong> to save the Preset as an asset. Click one of the available Presets to load a set of values.</p>
+<p><img src="_page_22_Picture_9.jpeg" alt=""></p>
+<p>In this example, the Presets contain different Import Settings for 2D textures depending on usage (albedo, normal, or utility).</p>
+<p><span id="page-23-0"></span><img src="_page_23_Picture_0.jpeg" alt=""></p>
+<p>Other handy ways to use Presets include:</p>
+<ul>
+<li><strong>Create a GameObject with defaults:</strong> Drag and drop a Preset asset into the Hierarchy to create a new GameObject with the corresponding component that includes Preset values.</li>
+<li><strong>Associate a specific Type with a Preset:</strong> In the Preset Manager (<strong>Project Settings &gt; Preset Manager</strong>), specify one or more Presets per type. Creating a new component will then default to the specified Preset values.<ul>
+<li>Pro tip: Create multiple Presets per type, and rely on the filter to associate the correct Preset by name.</li>
+</ul>
+</li>
+<li><strong>Save and load manager settings:</strong> Use Presets for a Manager window so the settings can be reused. For example, if you plan to reapply the same tags and layers or physics settings, Presets can reduce setup time for your next project.</li>
+</ul>
+<h4 id="-code-standards-"><strong>Code standards</strong></h4>
+<p>Coding standards will also help keep your team&#39;s work consistent and make it easier for developers to swap between different areas of your project. Again, there are no set-in-stone rules here. You need to decide what is best for your team – but once you&#39;ve decided, stick with it.</p>
+<p>As an example, namespaces can help organize your code better. They allow you to separate modules inside your project and avoid conflicts with third-party assets where class names may end up repeating.</p>
+<p>When using namespaces in your code, break your folder structure up by the namespace for better organization.</p>
+<p>A standard header is also a good practice. Including a standard header in your code template will help to document the purpose of a class, the date it was created, and even <em>who</em> created it. All of this is information that could easily get lost in the long history of a project, even when using version control.</p>
+<p>Unity employs a template script to read from whenever you create a new Monobehaviour in the project. Every time you create a new script or shader, Unity uses a template stored in <strong>%EDITOR_PATH%\Data\Resources\ScriptTemplates</strong>:</p>
+<ul>
+<li>Windows: <em>C:\Program Files\Unity\Editor\Data\Resources\ScriptTemplates</em></li>
+<li>Mac: <em>/Applications/Hub/Editor/[version]/Unity/Unity.app/Contents/Resources/ ScriptTemplates</em></li>
+</ul>
+<p>The default Monobehaviour template is this one: <strong>81-C# Script-NewBehaviourScript.cs.txt</strong></p>
+<p><img src="_page_24_Picture_0.jpeg" alt=""></p>
+<p>There are also templates for shaders, other behavior scripts, and assembly definitions.</p>
+<p>For project-specific script templates, create an Assets/ScriptTemplates folder, and copy the script templates into this folder to override the defaults.</p>
+<p>You can also modify the default script templates directly for all projects, but make sure you backup the originals before making any changes. Each version of Unity has its own template folder, so when you update to a new version, you need to replace the templates again.</p>
+<p>The original 81-C# Script-NewBehaviourScript.cs.txt file looks like this:</p>
+<pre><code>using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+#ROOTNAMESPACEBEGIN#
+public <span class="hljs-keyword">class</span> #SCRIPTNAME# : MonoBehaviour
+{
+ <span class="hljs-comment">// Start is called before the first frame update</span>
+ void Start()
+ {
+ #NOTRIM#
+ }
+ <span class="hljs-comment">// Update is called once per frame</span>
+ void Update()
+ {
+ #NOTRIM#
+ }
+}
+#ROOTNAMESPACEEND#
+</code></pre><p>There are two keywords that may be helpful:</p>
+<ul>
+<li><strong>#SCRIPTNAME#</strong> indicates the filename entered or the default filename (for example, NewBehaviourScript).</li>
+<li><strong>#NOTRIM#</strong> ensures that the brackets contain a line of whitespace.</li>
+</ul>
+<p>You can also use your own keywords and replace them with an Editor script implementing the OnWillCreateAsset method.</p>
+<p><img src="_page_25_Picture_0.jpeg" alt=""></p>
+<pre><code><span class="hljs-comment">// /*-------------------------------------------</span>
+<span class="hljs-comment">// ---------------------------------------------</span>
+<span class="hljs-comment">// Creation Date: #DATETIME#</span>
+<span class="hljs-comment">// Author: #DEVELOPER#</span>
+<span class="hljs-comment">// Description: #PROJECTNAME#</span>
+<span class="hljs-comment">// ---------------------------------------------</span>
+<span class="hljs-comment">// -------------------------------------------*/</span>
+using UnityEngine;
+using UnityEditor;
+public <span class="hljs-keyword">class</span> KeywordReplace : UnityEditor.AssetModificationProcessor {
+ public static void OnWillCreateAsset (string path)
+ {
+ path = path.<span class="hljs-keyword">Replace</span>(<span class="hljs-string">".meta"</span>, <span class="hljs-string">""</span>);
+ int index = path.LastIndexOf(<span class="hljs-string">"."</span>);
+ <span class="hljs-keyword">if</span> (index &lt; 0)
+ <span class="hljs-keyword">return</span>;
+ string <span class="hljs-keyword">file</span> = path.Substring(index);
+ <span class="hljs-keyword">if</span> (<span class="hljs-keyword">file</span> != <span class="hljs-string">".cs"</span> &amp;&amp; <span class="hljs-keyword">file</span> != <span class="hljs-string">".js"</span> &amp;&amp; <span class="hljs-keyword">file</span> != <span class="hljs-string">".boo"</span>)
+ <span class="hljs-keyword">return</span>;
+ index = Application.dataPath.LastIndexOf(<span class="hljs-string">"Assets"</span>);
+ path = Application.dataPath.Substring(0, index) + path;
+ <span class="hljs-keyword">if</span> (!System.IO.<span class="hljs-keyword">File</span>.Exists(path))
+ <span class="hljs-keyword">return</span>;
+ string fileContent = System.IO.<span class="hljs-keyword">File</span>.ReadAllText(path);
+ fileContent = fileContent.<span class="hljs-keyword">Replace</span>(<span class="hljs-string">"#CREATIONDATE#"</span>, System.DateTime.Today.<span class="hljs-keyword">ToString</span>("dd/MM/
+yy<span class="hljs-string">") + "</span>");
+ fileContent = fileContent.<span class="hljs-keyword">Replace</span>(<span class="hljs-string">"#PROJECTNAME#"</span>, PlayerSettings.productName);
+ fileContent = fileContent.<span class="hljs-keyword">Replace</span>(<span class="hljs-string">"#DEVELOPER#"</span>, System.Environment.UserName);
+
+ System.IO.<span class="hljs-keyword">File</span>.WriteAllText(path, fileContent);
+ AssetDatabase.Refresh();
+ }
+}
+</code></pre><p>You can also use your own keywords and replace them with an Editor script implementing the OnWillCreateAsset method.</p>
+<p><span id="page-26-0"></span><img src="_page_26_Picture_0.jpeg" alt=""></p>
+<h4 id="-ui-toolkit-formatting-conventions-"><strong>UI Toolkit formatting conventions</strong></h4>
+<p>UI Toolkit uses UXML code. As it&#39;s inspired by standard web technologies, UI Toolkit uses the kebab-case (also known as dash-case or lisp-case) for naming classes, the same convention used in CSS-related styling systems.</p>
+<p>Just as with classes, HTML (and by extension UXML) typically uses kebab-case (lowercase with dashes) for ID names. Therefore, names like my-element-id would be more standard.</p>
+<p>However, it&#39;s recommended that the ID names be specific and descriptive to easily identify the element&#39;s purpose. For example, submit-button or main-nav-container, logo-image etc.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Recommended</th>
+<th>Not recommended</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classes</td>
+<td>.menu-bar-blue</td>
+<td>ButtonBlue</td>
+</tr>
+<tr>
+<td>Visual Element IDs</td>
+<td>main-nav-image</td>
+</tr>
+</tbody>
+</table>
+<p>Recommended naming conventions in UXML</p>
+<p>The main reasons for using kebab style include:</p>
+<ul>
+<li>CSS selectors are case-insensitive, so using Camel case or Pascal case (like .buttonBlue or .ButtonBlue) can lead to confusion.</li>
+<li>The HTML specification recommends making attribute names all lowercase, meaning .button-blue and not .buttonBlue or .ButtonBlue.</li>
+<li>Kebab case is easy to read and write when multiple words are involved.</li>
+</ul>
+<p>Whatever naming convention you choose to go with, it&#39;s important to be consistent across your codebase. Consistent naming conventions across all types of scripts leads to cleaner code and makes it easier to access and modify by all team members.</p>
+<h2 id="services-for-project-organization">Services for project organization</h2>
+<h4 id="-asset-manager-"><strong>Asset Manager</strong></h4>
+<p>The <a href="https://unity.com/products/asset-manager">Unity Asset Manager</a> is Unity&#39;s extensible, cloud-based digital asset management (DAM) solution that lets you increase discoverability, reuse, and ROI of content across your organization. Asset Manager lets you index content from Unity projects using cloud storage, making asset discovery easy for entire teams even when based in different locations. It&#39;s key features include:</p>
+<ul>
+<li>Better asset management</li>
+<li>Intuitive browsing and discovery</li>
+<li>Essential integrations with creative tools</li>
+<li>Lifecycle management</li>
+<li>Role-based permissions</li>
+<li>Flexibility and extensibility</li>
+</ul>
+<p>You will find a collection of free materials and textures and demos available through the dashboard when logging into Unity Cloud. Open the <strong>Unity Assets</strong> sub section to download these into your projects.</p>
+<p><img src="_page_27_Figure_2.jpeg" alt=""></p>
+<p>Free materials and textures on Unity Cloud in the Unity Assets section</p>
+<p>Inside Unity, you can drag files from your current project into the <strong>Asset Manager</strong> window to upload them to the cloud. Those files are then available to any of your other projects that use Asset Manager as well as to team members connected to your project using UVCS.</p>
+<p><img src="_page_27_Figure_5.jpeg" alt=""></p>
+<p>Drag assets into the Upload tab to upload to the cloud.</p>
+<p>You can then import files into other projects directly from the Asset Manager window, making this system easy to use and a comprehensive archive of all your project assets.</p>
+<p><img src="_page_28_Picture_2.jpeg" alt=""></p>
+<p>Click import to download and import the files into your project.</p>
+<p>Tags are auto generated to enable quick search when you have lots of assets. The assets are also linked to projects, so you can limit your search to assets that belong to a specific project or artist.</p>
+<p><img src="_page_28_Picture_5.jpeg" alt=""></p>
+<p>Auto-generated tags make searching for assets quick and easy.</p>
+<p>Assets can be edited in the Unity Cloud. Add custom thumbnails, extra image previews, more tags, and comments.</p>
+<p><img src="_page_29_Picture_2.jpeg" alt=""></p>
+<p>The status of the model can be changed on the Cloud to let others know if the asset is in draft, in review, approved, rejected, published, or withdrawn. Adding a comment allows you to include further details about changes. The status of the asset will then be visible in the Asset Manager window in Unity.</p>
+<p>Edit assets to add extra image previews and tags.</p>
+<p><img src="_page_29_Picture_5.jpeg" alt=""></p>
+<p>Change an asset&#39;s status.</p>
+<p><span id="page-30-0"></span><img src="_page_30_Picture_0.jpeg" alt=""></p>
+<p>Team members always have access to the latest version, reducing issues when working with asset iterations.</p>
+<p>Asset Manager works with UVCS by enabling the integration on the Cloud.</p>
+<table>
+<thead>
+<tr>
+<th>Integrations</th>
+<th></th>
+<th>×</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Editor<br>38 Pixyz Studio</td>
+<td>Version Control<br>Unity Version Control System Beta</td>
+<td></td>
+</tr>
+<tr>
+<td>Python SDK<br>8<br>Version Control</td>
+<td>See your Unity VCS files in the Asset Manager.</td>
+<td>@ Synced Learn more Disconnect</td>
+</tr>
+</tbody>
+</table>
+<p>Integrate Asset Manager to UVCS to synchronize the data.</p>
+<p>Any modifications made through UVCS will automatically synchronize with Unity Asset Manager, preventing redundant content creation within your team.</p>
+<p>Learn more about the benefits of Unity Asset Manager <a href="https://unity.com/products/asset-manager">here.</a></p>
+<p>You can also watch <a href="https://learn.unity.com/tutorial/unity-asset-manager-guide#">this Asset Manager tutorial</a> on Unity Learn.</p>
+<h4 id="-build-automation-"><strong>Build Automation</strong></h4>
+<p>Build automation is an integral part of any DevOps strategy. You can run builds on the cloud as well as run builds simultaneously for all your target platforms. Instead of waiting for builds to complete sequentially on your device you can spend that time creating your project.</p>
+<p>In the Unity Cloud dashboard you can set up as many build targets as you like from the <strong>Configurations</strong> section.</p>
+<p><img src="_page_30_Picture_11.jpeg" alt=""></p>
+<p>Click <strong>Quick target setup</strong> to create a Build target (alternatively, you can click Target setup if you want to configure more advanced options).</p>
+<p><img src="_page_31_Picture_0.jpeg" alt=""></p>
+<p>Choose a platform to build for. You can set up numerous build targets for each platform.</p>
+<p><img src="_page_31_Picture_2.jpeg" alt=""></p>
+<p>Target platforms to build for</p>
+<p>You can build from any branch, and set up multiple targets for each branch. You can also select specific versions of Unity.</p>
+<table>
+<thead>
+<tr>
+<th>Identity information:</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Target name</td>
+<td></td>
+</tr>
+<tr>
+<td>Default Windows desktop 64-bit</td>
+<td></td>
+</tr>
+<tr>
+<td>Give this build target a name using alphanumeric characters, spaces, and the following characters: . - @ (e.g. &#39;Default Windows<br>desktop 64-bit&#39;)</td>
+<td></td>
+</tr>
+<tr>
+<td>Repo *</td>
+<td></td>
+</tr>
+<tr>
+<td>Asset Manager</td>
+<td>V</td>
+</tr>
+<tr>
+<td>Choose the repo that our systems will build from</td>
+<td></td>
+</tr>
+<tr>
+<td>Branch *</td>
+<td></td>
+</tr>
+<tr>
+<td>main<br>8</td>
+<td></td>
+</tr>
+<tr>
+<td>main</td>
+<td></td>
+</tr>
+<tr>
+<td>A liminostast innal inninimmanna sant</td>
+<td></td>
+</tr>
+<tr>
+<td>Enter your project subfolder path</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Versioning:</td>
+<td></td>
+</tr>
+<tr>
+<td>Unity version (1</td>
+<td></td>
+</tr>
+<tr>
+<td>Always Use Latest 6000.x</td>
+<td>V</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Auto detect Unity version (1</td>
+<td></td>
+</tr>
+<tr>
+<td>&gt; Build with closest version (1</td>
+</tr>
+</tbody>
+</table>
+<p>Choose a branch to create the build from.</p>
+<p>Note: Windows 11 in the Builder operating system, at the time of writing, offers 200 free minutes of build time per month.</p>
+<p>You can then set up a schedule. You can either build once to test your progress or set up a repeating schedule. The example below shows a daily schedule that will produce a build at 9.45 pm so that the latest game build is available every morning to check for any issues or bugs. You will receive an email message after completion of the build to indicate its status, whether it was a success or a fail.</p>
+<table>
+<thead>
+<tr>
+<th>Basic info<br>Required</th>
+<th>Scheduling</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Builder configuration<br>Required<br>Scheduling</td>
+<td>Choose to set up auto-build triggers and recurring build times. You can also skip this step and edit it later.<br>Auto-build: automatically start builds when your repository is updated.<br>Auto-cancel: automatically cancel previously pending builds when any new build is triggered.<br>Configure a repeating build schedule:<br>Interval<br>Daily</td>
+<td>V</td>
+</tr>
+<tr>
+<td></td>
+<td>Time of day<br>09:45 PM<br>Enable a clean build (1</td>
+<td>0</td>
+</tr>
+<tr>
+<td></td>
+<td>Back<br>Save configuration</td>
+</tr>
+</tbody>
+</table>
+<p>Create a schedule for your builds</p>
+<p>From the configurations section you can click <strong>Build</strong> next to your setup to build immediately. You can also pause or delete a build configuration.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Build</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>View Build History</td>
+</tr>
+<tr>
+<td></td>
+<td>Clone</td>
+</tr>
+<tr>
+<td>+</td>
+<td>Add to group</td>
+</tr>
+<tr>
+<td></td>
+<td>Disable</td>
+</tr>
+<tr>
+<td></td>
+<td>Delete</td>
+</tr>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Disable or delete a build schedule.</p>
+<p><img src="_page_33_Picture_0.jpeg" alt=""></p>
+<p>In the <strong>Build History</strong> section on the Build Automation dashboard, you can check the results of your builds. If any of them have failed, you can troubleshoot the failure by checking the logs.</p>
+<table>
+<thead>
+<tr>
+<th>8<br>Overview<br>ର୍ଚ୍ଚ<br>Explore repositories</th>
+<th>Build History<br>View Build History for All Projects</th>
+<th>Build<br>Upload a build</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Version Control ▼</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>UVCS organizations<br>Or select organization<br>0<br>V<br>Repositories<br>Seats</td>
+<td>Build health<br>2 successful<br>0 failed<br>100% successful</td>
+<td></td>
+<td>Average build time @<br>Average build size<br>Switch to average<br>36.47 MB<br>billable build time<br>00:36:21<br>Including wait time:<br>00:36:25</td>
+<td></td>
+<td></td>
+<td>Concurrent<br>builds<br>13</td>
+<td>Manage</td>
+</tr>
+<tr>
+<td>User groups<br>Usage reporting<br>Settings</td>
+<td>Build Target V<br>Build Target Group V</td>
+<td>Status V</td>
+<td>Display V</td>
+<td>Platform V</td>
+<td>Q Search</td>
+<td></td>
+<td>Search<br></td>
+</tr>
+<tr>
+<td>Build Automation -</td>
+<td>V</td>
+<td>Status &amp; #</td>
+<td>Build target</td>
+<td>Platform</td>
+<td>Build time (1)</td>
+<td>Completio</td>
+<td></td>
+</tr>
+<tr>
+<td>Build history<br>Configurations</td>
+<td>&gt;</td>
+<td>S<br>#1</td>
+<td>53<br>Default And</td>
+<td>And</td>
+<td>00:41:08</td>
+<td>in 2 min</td>
+<td>Logs</td>
+</tr>
+<tr>
+<td>Service updates<br>Settings</td>
+<td>&gt;</td>
+<td>&gt;<br>#1</td>
+<td>Default Win</td>
+<td>1<br>Win</td>
+<td>00:31:40</td>
+<td>about 1 h</td>
+<td>Logs<br></td>
+</tr>
+<tr>
+<td>0<br>Unity Cloud Drive<br>A Usage</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Build history in the Cloud</p>
+<p>You can download, share, or delete builds from the cloud.</p>
+<p><img src="_page_33_Picture_5.jpeg" alt=""></p>
+<p>Download, share or delete builds.</p>
+<p><img src="_page_34_Picture_0.jpeg" alt=""></p>
+<p>Set up integrations if you would like messages to be sent to other applications such as Discord or Slack after the completion of a build.</p>
+<p><img src="_page_34_Picture_2.jpeg" alt=""></p>
+<p>Go to <strong>Administration</strong> then <strong>Project Integrations</strong> on the Cloud and click on <strong>New Integration</strong>.</p>
+<p>Add new integrations via Administration &gt; Project Integrations.</p>
+<p>Choose the application/s you would like to use. Now messages will be sent via those applications to inform team members.</p>
+<p><a href="https://unity.com/solutions/ci-cd">Learn more about Unity Build Automation</a>.</p>
+<h2 id="-span-id-page-35-0-span-version-control-systems"><span id="page-35-0"></span>Version control systems</h2>
+<p>Now that you&#39;re familiar with some of the key terms and concepts in version control, project organization, and <a href="https://unity.com/resources/create-code-c-sharp-style-guide-e-book?isGated=false">naming conventions best practices</a>, it&#39;s time to introduce some of the key players. Of course, no one solution is best for everyone. There are many things to consider when choosing which VCS to use in your team. Hopefully, by the end of this book, you&#39;ll have all the information you need to make that decision.</p>
+<h2 id="git">Git</h2>
+<p>Open source, free, and flexible, <a href="https://git-scm.com/">Git</a> is one of the most popular version control systems around. However, as a distributed setup it can be daunting to non-technical users.</p>
+<p>Developed in 2005 by Linus Torvalds to control the Linux kernel development, it&#39;s remained well-maintained and open source since. Git as a platform is a command line-only tool. But many different GUIs have been developed for it, making the system more accessible to users.</p>
+<p>There can often be some confusion between Git and <a href="https://github.com/">GitHub</a>. GitHub is a hosting service for Git repositories, but you can use Git without using GitHub. That said, GitHub is a very popular service because there is a free version (with some limitations), and it doesn&#39;t require any custom server setups.</p>
+<table>
+<thead>
+<tr>
+<th>GitHub</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Some popular Git GUI clients include:</p>
+<p><a href="https://git-fork.com/">Fork</a>: It&#39;s a fast and friendly GUI that you can download for a free evaluation.</p>
+<p><img src="_page_36_Picture_4.jpeg" alt=""></p>
+<p>Fork</p>
+<p><span id="page-37-0"></span><img src="_page_37_Picture_0.jpeg" alt=""></p>
+<h4 id="-gitkraken-https-www-gitkraken-com-this-offers-a-more-visual-and-accessible-way-of-working-with-git-with-an-intuitive-ui-as-well-as-the-flexibility-to-switch-between-a-gui-or-a-cli-terminal-"><a href="https://www.gitkraken.com/">GitKraken:</a> This offers a more visual and accessible way of working with Git with an intuitive UI as well as the flexibility to switch between a GUI or a CLI terminal.</h4>
+<p><img src="_page_37_Figure_3.jpeg" alt=""></p>
+<p>GitKraken</p>
+<p>Microsoft <a href="https://code.visualstudio.com/">Visual Studio Code</a>: VS Code has source control integration built in, and with all the extensions available, you can avoid using a separate program altogether.</p>
+<table>
+<thead>
+<tr>
+<th>0</th>
+<th>SOURCE CONTROL<br>=</th>
+<th>V versioncontrol.md (Working Tree) X</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>Message (Ctrl+Enter to commit on &#39;versioncontro</td>
+<td>docs &gt; editor &gt; ¥ versioncontrol.md &gt; @ # Using Version Control in VS Code &gt; [m] ##<br>35<br>35</td>
+<td></td>
+</tr>
+<tr>
+<td>O</td>
+<td>1<br>V Staged Changes</td>
+<td><img src="images/versioncontrol/overview.png" alt="Git overview"><br>36</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>scm-provider-category.png docs\editor\ima  M</td>
+<td><img src="images/versioncontrol/overview.png" alt="Overview of Git"><br>36-</td>
+<td></td>
+</tr>
+<tr>
+<td>ಕ್ಕೆ</td>
+<td>2<br>Changes</td>
+<td>37<br>37</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Versioncontrol.md docs\editor<br>M</td>
+<td>&gt;<strong> Note: </strong> VS Code will leverage your machine&#39;s Git ins<br>38<br>38<br>git-scm.com/download) first before you get these featur</td>
+<td></td>
+</tr>
+<tr>
+<td>&gt;</td>
+<td>scm-providers-list.png docs\editor\images\ve  M</td>
+<td>39<br>39</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>&gt;<strong> </strong> When you commit, be aware that if your usernam<br>40<br>40</td>
+<td></td>
+</tr>
+<tr>
+<td>8</td>
+<td></td>
+<td>Git will fall back to using information from your local<br>information](<a href="https://git-scm.com/docs/git-commit#_commi">https://git-scm.com/docs/git-commit#_commi</a></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Visual Studio Code</p>
+<p>Microsoft <a href="https://visualstudio.microsoft.com/">Visual Studio</a>: As with VS Code, Visual Studio also has Git controls built in and includes a <a href="https://marketplace.visualstudio.com/items?itemName=GitHub.GitHubExtensionforVisualStudio">GitHub extension</a>.</p>
+<p><img src="_page_38_Picture_2.jpeg" alt=""></p>
+<p>Visual Studio</p>
+<p><a href="https://www.sourcetreeapp.com/">SourceTree</a>: Part of the Atlassian product group SourceTree is a free Git client for Windows and Mac that can also help you visualize and manage your Git repositories easily.</p>
+<table>
+<thead>
+<tr>
+<th>.</th>
+<th></th>
+<th></th>
+<th></th>
+<th>sourcetree-website (Git)</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(1)<br>+</td>
+<td></td>
+<td>18<br>5</td>
+<td>ం</td>
+<td>ਦੇ ਹੋ</td>
+<td>&gt;_</td>
+<td></td>
+</tr>
+<tr>
+<td>Commit<br>Pull<br>Push</td>
+<td></td>
+<td>Branch Merge</td>
+<td>Shelve</td>
+<td>Show in Finder Terminal Settings</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>WORKSPACE</td>
+<td>All Branches</td>
+<td>ം</td>
+<td>Show Remote Branches</td>
+<td>&lt;&gt;<br>Ancestor Order<br>് &gt;<br>Jump to:</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>File status</td>
+<td>Graph</td>
+<td>Commit</td>
+<td>Author</td>
+<td>Description</td>
+<td>Date</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>O</td>
+<td>67858c7</td>
+<td>Rahul Chha</td>
+<td>If master If origin/master If origin/HEAD Removing ol</td>
+<td>Mar 3, 2016, 11 :</td>
+<td></td>
+</tr>
+<tr>
+<td>History</td>
+<td></td>
+<td>bdb8bef</td>
+<td></td>
+<td>Rahul Chhab  Merged in update-google-verification (pull request #14)</td>
+<td>Feb 18, 2016, 1:3</td>
+<td></td>
+</tr>
+<tr>
+<td>Search</td>
+<td></td>
+<td>dfo975d</td>
+<td>Tyler Tadej</td>
+<td>Is origin/update-google-verification Undate google verificati - Feb 11, 2016, 2 2 2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>3bc3290</td>
+<td>Tyler Tadej</td>
+<td>Replace outdated Atlassian logo in footer with base-64 en  Feb 11, 2016, 2:1</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>19<br>BRANCHES</td>
+<td></td>
+<td>dba4719</td>
+<td>Tyler Tadej</td>
+<td>Add gitignore</td>
+<td>Feb 11, 2016, 1:3</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>1167b45</td>
+<td>Mike Minns</td>
+<td>Updated Mac min-spec to 10.10</td>
+<td>Feb 15, 2016, 11 :</td>
+<td></td>
+</tr>
+<tr>
+<td>BOOKMARKS</td>
+<td></td>
+<td>72d32a8</td>
+<td>Michael Min</td>
+<td>Merged in hero_images (pull request #13)</td>
+<td>Feb 15, 2016, 10 :</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>246c4ff</td>
+<td>Joel Unger</td>
+<td>If origin/hero_images If hero_images Used Tinypng to c  Feb 11, 2016, 3:3</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>67<br>TAGS</td>
+<td></td>
+<td>9d9438c</td>
+<td>Joel Unger</td>
+<td>Replacing hero images with new version of SourceTree</td>
+<td>Feb 9, 2016, 2:59_</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>ce75b63</td>
+<td>Michael Min</td>
+<td>Merged in bug/date-https (pull request #12)</td>
+<td>Feb 15, 2016, 10</td>
+<td></td>
+</tr>
+<tr>
+<td>REMOTES</td>
+<td></td>
+<td>85367bb</td>
+<td>Patrick Tho</td>
+<td>If origin/bug/date-https fixed date and https errors</td>
+<td>Jan 7, 2016, 12:2</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>4f9b557</td>
+<td>Joel Unger</td>
+<td>New Favicon</td>
+<td>Feb 8, 2016, 3:55</td>
+<td></td>
+</tr>
+<tr>
+<td>SHELVED</td>
+<td></td>
+<td>384e6d5</td>
+<td>Rahul Chhab</td>
+<td>If origin/search-console-access search console google ver  Feb 3, 2016, 2:09</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>6124739</td>
+<td>Mike Minns</td>
+<td>updated to move supported version to OSX 10.9+</td>
+<td>Dec 15, 2015, 2:0</td>
+<td></td>
+</tr>
+<tr>
+<td>SUBREPOSITORIES</td>
+<td></td>
+<td>8d687bb</td>
+<td>Mike Minns</td>
+<td>remove extra , when a line is skipped due to empty server</td>
+<td>Nov 23, 2015, 2:2</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>faa195e</td>
+<td>Mike Minns</td>
+<td>Skip records with empty serverjuser id as gas rejects them</td>
+<td>Nov 23, 2015, 2:1</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>Ocdfe96</td>
+<td>Mike Minns</td>
+<td>corrected paths after merge</td>
+<td>Nov 23, 2015, 2:0</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>051ab1b</td>
+<td>Mike Minns</td>
+<td>corrected column counting</td>
+<td>Nov 23, 2015, 1:5</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>a723bc2</td>
+<td>Mike Minns</td>
+<td>Merge branch &quot;au2gex&quot;</td>
+<td>Nov 23, 2015, 1:5</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>6619680</td>
+<td>Mike Minns</td>
+<td>deal with invalid instance ds</td>
+<td>Nov 23, 2016, 1:6</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>5009882</td>
+<td>Michael Min</td>
+<td>Merged in au2gex (pull request #11)</td>
+<td>Nov 23, 2015, 1:0</td>
+</tr>
+</tbody>
+</table>
+<p>SourceTree</p>
+<p><a href="https://www.sublimemerge.com/">Sublime Merge</a>: This system offers tools for speeding up code reviews with side-by-side diffs and syntax highlighting. It&#39;s a lightweight, high-performance client.</p>
+<p><img src="_page_39_Picture_2.jpeg" alt=""></p>
+<p>Sublime Merge</p>
+<p>Git is generally considered strong in branching and merging capabilities, but it can&#39;t handle large binary files as effectively as other solutions on the market. Git Large File Storage (LFS) goes some way to rectifying this.</p>
+<p>Since Git is a distributed client, the entire repository and complete history is on the developer&#39;s machine. This makes actions such as switching branches or reverting back to a point in history extremely quick. If you&#39;re working on a large project with multiple features and release branches, a Git workflow can save countless hours.</p>
+<p>Unity has released their <a href="https://github.com/Unity-Technologies/UnityCsReference">C# editor and engine code to the public on GitHub</a>. This is incredibly useful when you need to know how some functions work or how to replicate a feature of the Editor inside your own project.</p>
+<p>GitHub also has its own Git GUI, <a href="https://desktop.github.com/">GitHub Desktop</a>. When working in Unity, you can also use the <a href="https://unity.github.com/">GitHub for Unity</a> package to bring the Git tools directly into the Unity Editor.</p>
+<p>As mentioned, GitHub isn&#39;t the only hosting service available for your Git projects. You can also use <a href="https://bitbucket.org/product">Bitbucket</a> (from Atlassian) or <a href="https://about.gitlab.com/">GitLab</a>, which have many more DevOps features available to them, or one of the many other hosting services available.</p>
+<p>See this <a href="https://www.youtube.com/watch?v=ISW2nS_v3Ic&amp;t=753s">talk from Unite Now 2020</a> on how to get started with Github, GitKraken and Unity.</p>
+<h2 id="-span-id-page-40-0-span-perforce-helix-core-"><span id="page-40-0"></span>Perforce (Helix Core)</h2>
+<p><a href="https://www.perforce.com/products/helix-core">Helix Core</a> is an enterprise-level version control system generally used by large game studios. These studios use Perforce because it features centralized repos that are most often hosted on their own servers. It does not feature visual repos, so its adoption might be more challenging for non-technical developers, but in larger studios there will be DevOps and Release Engineers to help manage the code base. Plus, as an enterprise solution, it includes a global support team.</p>
+<p>Helix Core can also be used by small teams and you can still deploy to the cloud through solutions like <a href="https://www.perforce.com/products/helix-core/install-enhanced-studio-pack-aws">Amazon AWS</a> or Microsoft <a href="https://www.perforce.com/products/helix-core/install-enhanced-studio-pack-azure">Azure</a>.</p>
+<p><img src="_page_40_Figure_4.jpeg" alt=""></p>
+<p>Helix Core P4V interface</p>
+<p>Helix Core can handle large files and there&#39;s a built-in Unity Editor integration that&#39;s covered in a later section.</p>
+<p>To learn more about integrating your Unity workflow with Helix Core, check out this <a href="https://www.perforce.com/blog/vcs/how-to-use-unity-version-control">Perforce</a>  <a href="https://www.perforce.com/blog/vcs/how-to-use-unity-version-control">blog post</a>.</p>
+<h2 id="-span-id-page-41-0-span-apache-subversion"><span id="page-41-0"></span>Apache Subversion</h2>
+<p>Like Git, <a href="https://subversion.apache.org/">Apache Subversion</a> (known as SVN) is a free and open-source version control system. Unlike Git, it&#39;s a centralized VCS that can handle large binary files. However, it&#39;s still a command line system that requires one of the many third-party GUI clients to be a bit more user friendly. One such client is <a href="https://www.smartsvn.com/download/">SmartSVN</a>.</p>
+<p><img src="_page_41_Picture_3.jpeg" alt=""></p>
+<p>SmartSVN GUI</p>
+<p>Before Git LFS, SVN was a popular choice when working in Unity. As a centralized solution, it was simpler to work with and, as mentioned, better for working with large files. Where SVN falls behind the other tools is when you start to use branches and need to merge between them. Merging in SVN has many pains, especially when it comes to conflicts – or even false conflicts – between files. A merge operation that would take minutes in another VCS may take hours to go through manually in SVN.</p>
+<p>For more information on setting up Unity to work with SVN, check out the <a href="https://docs.unity3d.com/6000.0/Documentation/Manual/SmartMerge.html">Unity documentation.</a></p>
+<h2 id="unity-version-control">Unity Version Control</h2>
+<p><a href="https://unity.com/products/plastic-scm?utm_source=demand-gen&amp;utm_medium=PDF&amp;utm_campaign=asset-links-gmg-achieve-quality&amp;utm_content=version-control-and-project-organization-ebook">Unity Version Control</a> (UVCS) is a flexible version control system with unique interfaces to support programmers and artists alike. It excels at handling large repos and binary files, and as both a file-based and changeset-based solution, it gives you the capability to download only the specific files you&#39;re working on, rather than the entire project build.</p>
+<p>There are three ways to access UVCS: via multiple applications and repositories through the UVCS <a href="https://docs.unity.com/ugs/en-us/manual/devops/manual/version-control-desktop-client">desktop client</a>, by adding it to your projects <a href="https://learn.unity.com/tutorial/how-to-use-the-unity-hub?courseId=6401bbfcedbc2a22aaebd59b">through the Unity Hub</a>, or accessing the repository on Unity cloud via your web browser. See the section &quot;<a href="#page-61-0">Get started with UVCS in</a>  <a href="#page-61-0">Unity 6</a>&quot; for more information on how to set it up.</p>
+<p>Small teams of up to three users can sign up for free and at the time of writing, get up to 5GB of cloud storage, along with access to the Version Control software, including <a href="https://unity.com/solutions/version-control-artists">Gluon.</a></p>
+<p>Gluon is a slimline client designed to let artists work like artists, not programmers. It allows you to pick only the files that you&#39;re going to work on and check them out from the server, locking them from being modified by anyone else. Once you complete your work, you check the files back in. The Gluon GUI removes the more complex concepts that work better for programmers than for other, less technical users.</p>
+<p><img src="_page_42_Figure_2.jpeg" alt=""></p>
+<p>Gluon offers a workflow especially designed for artists, making it easy to preview files and history as well as to check in changes.</p>
+<p>For artists, both UVCS and Gluon include ways to diff images. The image diff tool lets you compare two versions of the same file visually, a feature that many other systems don&#39;t offer.</p>
+<p><img src="_page_42_Picture_5.jpeg" alt=""></p>
+<p>A diff viewer in Swipe mode: Go from one version to the other by dragging the swipe control, a useful feature for tracking image evolution</p>
+<p>The standard UVCS GUI client has all the features they would be looking for and more for the programming team. The GUI has an interactive visual Branch Explorer that shows the true relationships of all the branches in a project. There is also a built-in Code Review system that you can use to request the review of your work from other groups or team members.</p>
+<p><img src="_page_43_Figure_2.jpeg" alt=""></p>
+<p>The branch explorer visualizes the merge structure of the project. It evolves horizontally from left to right.</p>
+<p>One of the key strengths of UVCS is that it has the flexibility to be configured for a distributed or centralized workflow. In fully distributed mode, developers work with a repository on their local machine, checking in, branching, and merging with ease. Developers will then push and pull changes to the server to share them when ready.</p>
+<p>In centralized mode, users check out and check in their changes directly to the server so everyone is working on the latest changes. However, as development teams have grown into global organizations, everyone communicating with one central server isn&#39;t always beneficial. UVCS can also be configured to work in a multi-site system. In this system, servers are set up at each site, so teams can check in to their local server, keeping their workflow fast and hard drives happy. Then, the distributed servers communicate with each other to a central or cloud server.</p>
+<p><img src="_page_43_Figure_6.jpeg" alt=""></p>
+<p>See the section <a href="#page-61-0">Get started with UVCS in Unity 6</a>, along with <a href="https://learn.unity.com/tutorial/unity-version-control-guide">this Unity Learn quick-start</a>  <a href="https://learn.unity.com/tutorial/unity-version-control-guide">tutorial</a>, for the steps to setting up UVCS in Unity.</p>
+<h2 id="-span-id-page-44-0-span-vcs-comparison"><span id="page-44-0"></span>VCS comparison</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th>UVCS</th>
+<th>Git</th>
+<th>Perforce</th>
+<th>Subversion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Flexibility</td>
+<td>Work centralized<br>Checkin only, no push/<br>pull</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Work distributed<br>Push/pull + local repo</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Large repos</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Binaries</td>
+<td>Large files</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Lock files to avoid<br>merging</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Visualizes your repos<br>(so you don&#39;t need a<br>PhD in branching)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>GUI</td>
+<td>User-friendly GUIs</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Artist-friendly GUI<br>and workflow</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Workflow</td>
+<td>Creates effective task<br>branches</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Detects merges<br>between branches</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Provides diff and<br>three-way merge<br>tools</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Merge</td>
+<td>Tools help you<br>understand the merge</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Good merging<br>renames, moved files,<br>directories, refactors</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><span id="page-45-0"></span><img src="_page_45_Figure_1.jpeg" alt=""></p>
+<h3 id="setting-up-unity-to-work-with-version-control">Setting up Unity to work with version control</h3>
+<p>This section will help you set up Unity to work with Git, Perforce, or UVCS, depending on your preference. By understanding some of the key workflows for each solution, you can make an informed decision about which system will best suit your team.</p>
+<h4 id="-editor-project-settings-"><strong>Editor project settings</strong></h4>
+<h4 id="perforce-helix-core">Perforce Helix Core</h4>
+<p>Unity Editor integration is available with most version control systems, and Perforce Helix Core integration is built into the Editor. You only need to enable it via <strong>Edit</strong> &gt; <strong>Project Settings</strong> &gt; <strong>Version Control</strong>. Set the Mode to Perforce, and fill in the information of your workspace and server settings.</p>
+<table>
+<thead>
+<tr>
+<th>Project Settings</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td>ರ</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Adaptive Performance<br>Audio<br>Burst AOT Settings</td>
+<td>Version Control</td>
+<td></td>
+<td>-1<br>0<br>14</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Editor</td>
+<td>Mode</td>
+<td>Perforce<br>œ</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Graphics</td>
+<td>Username</td>
+<td>Ben</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Input Manager</td>
+<td>Password</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Input System Package<br>Settings</td>
+<td>Workspace</td>
+<td></td>
+<td>Ben_CurveEditor</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Memory Settings</td>
+<td>Server</td>
+<td></td>
+<td>Iccalhost:1666</td>
+<td>4</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Package Manager</td>
+<td>Log Level</td>
+<td></td>
+<td>Notice</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Physics<br>Settings</td>
+<td>Cornecting</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Physics 2D<br>Player</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>Reconnect</td>
+<td></td>
+</tr>
+<tr>
+<td>Preset Manager</td>
+<td>Work Offine</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Quality</td>
+<td>Automatic Add</td>
+<td>&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Scene Template<br>Script Execution Order</td>
+<td>Asyne Status</td>
+<td></td>
+<td>&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Services</td>
+<td>Show Falled Checkouts</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Unity Cloud</td>
+<td>Overwrite Failed Checkout Assets.</td>
+<td></td>
+<td>&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ShaderGraph</td>
+<td>Smart merge</td>
+<td></td>
+<td>Ask</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Tags and Layers<br>TextMesh Pro<br>Time</td>
+<td>Version Packages Outside Project</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Timeline</td>
+<td>Overlay loons</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Ui Toolkit</td>
+<td>Project Window</td>
+<td></td>
+<td>V</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Version Control</td>
+<td>Hierarchy Window</td>
+<td></td>
+<td>&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Unity Version Control Settings</td>
+<td>Other Windows</td>
+<td></td>
+<td>&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Visual Scripting<br>XR Plugin Management</td>
+<td>· Local</td>
+<td>· Deleted Local</td>
+<td></td>
+<td>2 Conflicted</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Out of Sync</td>
+<td>× Deleted Remote</td>
+<td></td>
+<td>Locked Local</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Checked Out Local</td>
+<td>+ Added Local<br>Locked Remote</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Checked Out Remote</td>
+<td>+ Added Ramote</td>
+<td></td>
+<td>O Updating Status</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Setting up Perforce Helix Control for a project</p>
+<p><img src="_page_46_Picture_0.jpeg" alt=""></p>
+<p>Once this is enabled, you will see that files are now considered &quot;Under Version Control,&quot; with the option to check them out.</p>
+<p>Once a file is checked out, you can lock, unlock, submit, or revert the file. Choosing to submit will bring up a changeset dialog for you to add your commit message before submitting it into the repository.</p>
+<table>
+<thead>
+<tr>
+<th>Description</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Added player to the scene start position</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Assets\Scenes\OasisScene.unity +meta</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>Cancel Save Submit</td>
+</tr>
+</tbody>
+</table>
+<p>Changeset dialog box</p>
+<h4 id="use-the-helix-p4v-interface-to-view-the-project-history-">Use the Helix P4V interface to view the project history.</h4>
+<table>
+<thead>
+<tr>
+<th>Jocalhost:1666, Ben - Perforce Helix P4V</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th>1 2017</th>
+<th></th>
+<th>X</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fie<br>Edit<br>Search View Actions Connection Tools</td>
+<td>Window<br>Help</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>0<br>1<br>Refresh<br>Gettatest<br>Chediout<br>Gubmit</td>
+<td>1<br>Add Delete Revert</td>
+<td></td>
+<td>Diff</td>
+<td>(ને.<br>Traelspse</td>
+<td>14<br>and new<br>Revoraph</td>
+<td>Int</td>
+<td>Clone</td>
+<td>Fetch</td>
+<td>Push</td>
+<td></td>
+<td>Cance</td>
+<td></td>
+</tr>
+<tr>
+<td>//CurveEditor/</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>▶</td>
+<td></td>
+</tr>
+<tr>
+<td>Depot Depot De Workspace<br>II.<br>1</td>
+<td></td>
+<td>+ = Pencing @ Submitted D</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>(no workspace selected)<br>P</td>
+<td>Filter: User is &quot;Ben&quot;<br>&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>3 matches</td>
+<td>21</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Curve Editor</td>
+<td>Change</td>
+<td>▼ Date Submitted</td>
+<td></td>
+<td>Submitted By</td>
+<td>Description</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Assets<br>ProjectSettings</td>
+<td>▼ 43</td>
+<td>11/11/2021 21:40 Ben</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Added the Sample Scene</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>//CurveEditor/Assets/Scenes/SampleScene.unity #2</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>C<br>4<br>2</td>
+<td>09/11/2021 23:08 Ben</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Changed the Panel background color.</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>4<br>4<br>1</td>
+<td>09/11/2021 23:03 Ben</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Added CurveEditor base project</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>//CurveEditor/ProjectSettings</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>View the project history.</p>
+<p>For more on getting started with Perforce Helix Core and Unity, check out the <a href="https://www.perforce.com/blog/vcs/how-to-use-unity-version-control">Perforce blog</a><a href="https://www.perforce.com/blog/vcs/how-to-use-unity-version-control">.</a></p>
+<h3 id="-span-id-page-47-0-span-uvcs"><span id="page-47-0"></span>UVCS</h3>
+<p>UVCS is integrated with the Unity Editor, making it easy to get started and simplify workflows. When you create a new Unity project in the Hub, you can immediately integrate Unity VCS by selecting the <strong>Use Unity Version Control</strong> checkbox.</p>
+<p>To connect UVCS to an existing project in the Editor, open <strong>Window &gt; Unity Version Control.</strong>  The tab will appear in the Project window.</p>
+<table>
+<thead>
+<tr>
+<th>@ Project Settings</th>
+<th></th>
+<th>na</th>
+<th>×</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Project Settings</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>a</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Adaptive Performance<br>Audio</td>
+<td>Unity Version Control Settings</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Burst AOT Settings<br>Editor<br>Graphics</td>
+<td>Unity VCS is enabled<br>Disable</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>In-Editor Tutorials</td>
+<td>General</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Input Manager</td>
+<td>Show checkouts</td>
+<td>V</td>
+<td></td>
+</tr>
+<tr>
+<td>Input System Package<br>Settings</td>
+<td>Auto-refresh</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>Memory Settings</td>
+<td>File Change Settings</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ML-Agents</td>
+<td>Find changed files in the workspace</td>
+<td>V</td>
+<td></td>
+</tr>
+<tr>
+<td>Package Manager<br>Physics</td>
+<td>Check the content to determine files as changed, not just timestamp</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Settings</td>
+<td>File Visibility Settings</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Physics 2D</td>
+<td>Group changes in &quot;change lists&quot;</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Player</td>
+<td>Show private files</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Preset Manager<br>Quality</td>
+<td>Show ignored files</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Scene Template</td>
+<td>Show hidden files</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Script Execution Order<br>Services</td>
+<td>Show deleted files and directories</td>
+<td>SOURCE</td>
+<td></td>
+</tr>
+<tr>
+<td>ShaderGraph</td>
+<td>File Move and Rename Detection</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Tags and Layers</td>
+<td>Find moved and renamed files and directories</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>TextMesh Pro<br>Settings</td>
+<td>Match binary files only when they have the same extension</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>Time</td>
+<td>Match text files only when they have the same extension</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Timeline</td>
+<td>Similarity percentage</td>
+<td>90</td>
+<td></td>
+</tr>
+<tr>
+<td>UI Toolkit</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>V Version Control<br>Unity Version Control Settings</td>
+<td>File system watcher is enabled</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Visual Scripting<br>XR Plugin Management</td>
+<td>Unity Version Control watches the workspace for changes to make the<br>operation faster. This removes the need to walk the directory structure,<br>although move matching can still consume time.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>UVCS in the Project Settings</p>
+<p>UVCS will feel familiar to Unity users, and simplifies workflows by eliminating the need for an additional client. Files can be added, checked out, reverted, checked in, or submitted, directly from the Editor.</p>
+<p><img src="_page_48_Picture_0.jpeg" alt=""></p>
+<p><img src="_page_48_Picture_1.jpeg" alt=""></p>
+<p>Working with files in UVCS from the Unity Editor</p>
+<table>
+<thead>
+<tr>
+<th>Check in Changes</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Add a comment to your check-in</td>
+<td></td>
+</tr>
+<tr>
+<td>Created an initial scene layout</td>
+<td></td>
+</tr>
+<tr>
+<td>Files</td>
+<td></td>
+</tr>
+<tr>
+<td>Assets\Scenes\OasisScene.unity +meta</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Check in<br>Cancel</td>
+</tr>
+</tbody>
+</table>
+<p>Checking in a file</p>
+<p>UVCS also has the advantage of having a Changesets tab available in the Unity Editor via <strong>Window</strong> &gt; <strong>Unity Version Control</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Console<br>Project</th>
+<th>O Unity Version Control</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pending Changes</td>
+<td>Incoming Changes<br>Changesets</td>
+<td>Branches<br>×</td>
+<td>&amp; Search</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>V Item (1/1 selected)</td>
+<td>Status</td>
+<td>Date modified</td>
+<td></td>
+</tr>
+<tr>
+<td>&gt; Changed items (1/1 selected)</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&gt; Assets\Scripts\Rotator.cs</td>
+<td>Changed</td>
+<td>1 minute ago (13/06/2024 13:34:32)</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Changed rotator script so it rotates when you press the left mouse button</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>Check in Changes</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>@ Unity Version Control<br>Console</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Incoming Changes<br>anges</td>
+<td>Branches<br>Changesets<br>×</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Creation date</td>
+<td>Created by</td>
+<td>Comment</td>
+<td></td>
+</tr>
+<tr>
+<td>13/06/2024 12:19:23</td>
+<td>@ steve@email.com</td>
+<td>Created a rotator script for the airplane propellor</td>
+<td></td>
+</tr>
+<tr>
+<td>11/06/2024 13:35:19</td>
+<td>0<br>pete@email.com</td>
+<td>Created a scene with spline extrusion</td>
+<td></td>
+</tr>
+<tr>
+<td>11/06/2024 13:07:19</td>
+<td>0<br>pete@email.com</td>
+<td>Added WW2 Thunderbolt asset to a new scene</td>
+<td></td>
+</tr>
+<tr>
+<td>10/06/2024 20:40:52</td>
+<td>0<br>steve@email.com</td>
+<td>Added a new spline</td>
+<td></td>
+</tr>
+<tr>
+<td>10/06/2024 20:35:17</td>
+<td>0<br>steve@email.com</td>
+<td>Added a red capsule</td>
+<td></td>
+</tr>
+<tr>
+<td>10/06/2024 20:34:02</td>
+<td>0<br>steve@email.com</td>
+<td>Setup second workspace</td>
+<td></td>
+</tr>
+<tr>
+<td>06/06/2024 19:33:23</td>
+<td>2 pete@email.com</td>
+<td>Root dir</td>
+</tr>
+</tbody>
+</table>
+<p>Pending changes and Changesets tabs</p>
+<p><span id="page-49-0"></span><img src="_page_49_Picture_0.jpeg" alt=""></p>
+<p>For more information on setting up Version Control in Unity, check out the <a href="https://docs.unity3d.com/6000.0/Documentation/Manual/Versioncontrolintegration.html">documentation</a>.</p>
+<h4 id="git-and-other-solutions">Git and other solutions</h4>
+<p>For all other VCS, open the <strong>Edit</strong> &gt; <strong>Project Settings</strong> &gt; <strong>Version Control</strong> window, and select Visible Meta Files from the dropdown menu. There are no other options here, but meta files must be visible in order for version control systems to detect them (see previous chapter on Meta Files).</p>
+<h4 id="-what-to-ignore-"><strong>What to ignore</strong></h4>
+<p>When working with a Unity project, or any project for that matter, only files that cannot be generated should be placed under version control.</p>
+<p>For Unity projects, that means only files in the Assets and Project Settings folders should be committed to your repository. Unity can automatically recreate all the other folders. Under no circumstance should you commit the Library folder, since this folder can get very large and Unity will recreate it when launching the Editor if it doesn&#39;t exist.</p>
+<ul>
+<li>UVCS automatically selects the appropriate folders and files to place under version control when set up from the Unity Editor. There is a list that is saved in the <code>ignore. conf</code> file at the root of the project that describes which files are ignored. To learn more about setting up the &quot;ignore.conf&quot; file, check out this <a href="https://blog.plasticscm.com/2020/01/definitive-ignoreconf-for-unity-projects.html">blog post</a>.</li>
+<li>With Perforce, you need to explicitly add the Assets and Project Settings folders to your depot.</li>
+<li>Git requires a <strong>.gitignore</strong> file to indicate what files should never be included. Depending on your Git GUI client, you can select a template when creating a repository, or this can be done through GitHub if you set the hosting up first. Alternatively, a template can be downloaded <a href="https://github.com/github/gitignore/blob/master/Unity.gitignore">here.</a></li>
+</ul>
+<p>You should also avoid committing things like .exe or .apk files. Additionally, gradle and xcode projects built from your Unity project should not be added to the repository.</p>
+<p>A small exception to this rule is if you were to set up automated build processes for your Gradle or Xcode projects, but then they would be typically committed to a repository of their own.</p>
+<p><span id="page-50-0"></span><img src="_page_50_Figure_1.jpeg" alt=""></p>
+<p>Files can be added to the ignored list directly from the Unity Editor when using UVCS.</p>
+<h4 id="-working-with-large-files-"><strong>Working with large files</strong></h4>
+<p>Unity projects are made up of a lot more than just code. In fact, scripts can often be heavily outnumbered by other asset files in a Unity project. These assets are stored as binary files: Textures, models, Prefabs, audio clips, timelines, and so on. This results in two things:</p>
+<ul>
+<li>They can be hard to compare between revisions.</li>
+<li>The diff cannot be described, so the whole file is written when a change is pushed to the repo.</li>
+</ul>
+<p>Again, in a distributed environment, the entire project history is available on a user&#39;s local machine. Now if you have a history of large files that have had many changes over a long time, then you will have that many copies of the file stored on your machine. This can quickly consume a large portion of your hard drive space!</p>
+<p>This is one of main reasons that historically, teams preferred a centralized workflow. This way, large historical versions of binary files would only live on a central server, with individual users only accessing the latest version on their machines.</p>
+<p>Both Perforce and UVCS are centralized systems that can handle large files well. UVCS also gives you the option to work in a distributed pipeline, and large file sizes is the tradeoff that you need to consider when choosing between these options.</p>
+<p><img src="_page_51_Picture_0.jpeg" alt=""></p>
+<p>Another feature of UVCS is the <a href="https://blog.plasticscm.com/2021/07/dynamic-workspaces-alpha-for-windows.html">Dynamic Workspace,</a> which relies on a virtual filesystem. This means that the Dynamic Workspace downloads files on demand – so, while you see everything in your workspace, in reality not everything is downloaded.</p>
+<p>Git, being distributed, can struggle with large files. Be sure to also include <a href="https://git-lfs.github.com/">Git LFS</a> if you will be working with large files. Git LFS replaces your large files in the .git folder with text pointers while storing the actual asset on a server such as GitHub.</p>
+<h2 id="-span-id-page-52-0-span-best-practices-for-version-control"><span id="page-52-0"></span>Best practices for version control</h2>
+<p>Regardless of which VCS you use, many best practices can help your team work more effectively. Every team has different needs, so every practice won&#39;t fit every team.</p>
+<p>These tips come from the Unity <a href="https://unity.com/solutions/accelerate-solutions-games">Enterprise Support Team</a>, who are helping to optimize realworld projects for some of the biggest studios out there.</p>
+<h2 id="commit-little-commit-often">Commit little, commit often</h2>
+<p>This is by far the easiest change you can make to your workflow, yet it&#39;s the one that some developers struggle with the most. When working with other project management tools, it&#39;s likely you have already broken down the work into small, manageable tasks. Commits should be exactly the same.</p>
+<p>A single commit should only relate to one task or ticket, unless a single line of code magically fixes several bugs. If you are working on a larger feature, break it down into smaller tasks, and make commits for those tasks. We&#39;ll dive into feature branches later.</p>
+<p>The biggest advantage of using smaller commits is that when something does go wrong, you will find the change much more easily and can revert the negative change without affecting any other positive changes.</p>
+<p><span id="page-53-0"></span><img src="_page_53_Picture_0.jpeg" alt=""></p>
+<h2 id="keep-commit-messages-clean">Keep commit messages clean</h2>
+<p>Commit messages describe the history of your project. It&#39;s much easier to find the change that added high-score tables to your game if its commit message says &quot;Added high score tables to the menu&quot; and not &quot;Menu updated!&quot;</p>
+<p>When working with a task ticketing system like JIRA or GitLab, it&#39;s even better to include a ticket number in your commit. Many systems can be set up to work together with smart commits, in which you can actually reference tickets and change their status from your commit message.</p>
+<p>For example, the commit &quot;JRA-123 #close #comment task completed&quot; would set JIRA ticket JRA-123 to closed, leaving the comment &quot;task completed&quot; on the ticket.</p>
+<p>For more on setting this workflow up, see the <a href="https://support.atlassian.com/jira-software-cloud/docs/process-issues-with-smart-commits/">documentation in JIRA</a> or the <a href="https://docs.gitlab.com/ee/user/project/integrations/pivotal_tracker.html#pivotal-tracker-service">Pivotal Tracker</a>  <a href="https://docs.gitlab.com/ee/user/project/integrations/pivotal_tracker.html#pivotal-tracker-service">service in GitLab.</a></p>
+<h2 id="avoid-indiscriminate-commits">Avoid indiscriminate commits</h2>
+<p>The only time &quot;commit -a&quot; (the git command for &quot;commit all changes&quot;) or any of its counterparts should be used is with the first commit of a project. Usually, this is when the only files in the project are README.md.</p>
+<p>A commit should only ever include files that are related to the change you are committing to the repo. Particular care should be taken when working with Unity projects, and some changes may result in several files being marked as changed, such as scenes, prefabs, or sprite atlases, even though you didn&#39;t intend to make any changes to them.</p>
+<p>If you accidentally commit a change to a scene that someone else is working on, that could cause a headache for them when they go to commit their changes and find they need to merge your changes first.</p>
+<p>This is one of the most common mistakes that people who are new to version control will make. It&#39;s important to understand that you should only commit what <em>you</em> have changed in the project. To learn more, check out this <a href="https://blog.plasticscm.com/2018/10/checkin-with-reviewers-in-mind-how-to-fix-pull-requests.html">blog post</a> on how to speed up your workflow.</p>
+<h2 id="-span-id-page-54-0-span-get-the-latest"><span id="page-54-0"></span>Get the latest</h2>
+<p>As often as it makes sense, pull the latest changes from the repo into your working copy. It&#39;s not good to work off in isolation, as this only increases the likelihood of merge conflicts. A typical daily workflow in each system would be something like this.</p>
+<table>
+<thead>
+<tr>
+<th>Git</th>
+<th></th>
+<th></th>
+<th></th>
+<th>Perforce</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>—</td>
+<td>git pull</td>
+<td></td>
+<td></td>
+<td>Get latest</td>
+<td></td>
+</tr>
+<tr>
+<td>—</td>
+<td>Then as many times as you like:</td>
+<td></td>
+<td>—</td>
+<td>Check out files to work on</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>—</td>
+<td>Make edits in your working copy.</td>
+<td>—</td>
+<td>Make edits</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>—</td>
+<td>git commit your changes.</td>
+<td></td>
+<td>Submit changes</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>—</td>
+<td>git pull the latest changes.</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>—</td>
+<td></td>
+<td>Once you are happy with your changeset<br>of commits:</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>—</td>
+<td>git pull once more.</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>—</td>
+<td>git push to send your commits to<br>the repo.</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th>M4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>Choose files to submit (10):<br>v name</td>
+<td>File</td>
+<td></td>
+<td>A In Folder</td>
+<td>Resolve Status</td>
+<td>Type</td>
+<td>Pending Action</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>દ્વાર</td>
+<td>Demo.cs meta</td>
+<td>//CurveEditor/As</td>
+<td></td>
+<td>META File</td>
+<td>edit</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>+ D</td>
+<td>DemoCurveEditorSettings.light  //CurveEditor/As</td>
+<td></td>
+<td></td>
+<td>LIGHTING File</td>
+<td>830</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>. D</td>
+<td>DemoCurveEditorSettings.light  //CurveEditor/As</td>
+<td></td>
+<td></td>
+<td>META File</td>
+<td>કર્તવ</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>10</td>
+<td>Editor Settings. asset</td>
+<td>//CurveEditor/Pr</td>
+<td></td>
+<td>ASSET File</td>
+<td>edit</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>+ D</td>
+<td>manifest.json</td>
+<td>//CurveEditor/Pa</td>
+<td></td>
+<td>JSON File</td>
+<td>add</td>
+</tr>
+<tr>
+<td>V</td>
+<td></td>
+<td>్లా</td>
+<td>NewBehaviourScript.cs</td>
+<td>//CurveEditor/As</td>
+<td></td>
+<td>C # Source File</td>
+<td>delete</td>
+</tr>
+<tr>
+<td>V</td>
+<td></td>
+<td>్లా</td>
+<td>NewBehaviourScript.cs.meta</td>
+<td>//CurveEditor/As</td>
+<td></td>
+<td>META File</td>
+<td>delete</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>+ B</td>
+<td>packages-lock. Json</td>
+<td>//CurveEditor/Pa</td>
+<td></td>
+<td>JSON File</td>
+<td>add</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>202</td>
+<td>ProjectSettings.asset</td>
+<td>//CurveEditor/Pr</td>
+<td></td>
+<td>ASSET File</td>
+<td>edit</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>30</td>
+<td>VersionControlSettings.asset</td>
+<td>//CurveEditor/Pr</td>
+<td></td>
+<td>ASSET File</td>
+<td>edit</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Saving changes to a new changelist in P4V</p>
+<table>
+<thead>
+<tr>
+<th>d: VGIT \CurveEditor \Assets&#39; \ view Text Document.exe</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Depot De Workspace<br>11. 7.</td>
+<td>+ D Fies &amp; Pending a O Submitted Worlspaces   Dranshes</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Ben_CurvelEditor</td>
+<td>Filter: User is &quot;Ben&quot;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>· d: gIT CurveEditor</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&gt;<br>1<br>Assets</td>
+<td>Description<br>Change<br>· User<br>&gt; A default Ben<br><enter description here></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>RuntimeCurveEditor<br>1</td>
+<td>* A 9<br>Removed the NewBehaviour<br>Ben</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>13<br>Scenes<br>0<br>AnotherScript.cs #2/2 <bext><br>12<br>AnotherScript.cs.meta #2/2 <text><br>12<br>RuntimeCurveEditor meta #1/1 <hext></td>
+<td>[/CurveEditor [Assets, New BehaviourScript, cs #1/1 <text><br>[/CurveEditor  Assets NewBehaviourSolpt.calimeta #1/1 <text><br>2<br>Shelved Items (0)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>C<br>Scenes.meta #1/1 <text><br>Ubrary</td>
+<td>0<br>Submit Changelist: 9 (Ben_CurveEditor, localhost:1666, Ben)<br>1</td>
+<td>×</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Logs</td>
+<td>Write a changelist description</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ાંગ</td>
+<td>Removed the NewBehaviour</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Temp<br>UserSettings<br>C<br>.vsconfig<br>B<br>Assembly-CSharp.csproj<br>C<br>Curvellditor.sin</td>
+<td>[M4]<br>· Choose files to submit (Z):</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>V name<br>File<br>. In Folder<br>Resolve Status<br>Type<br>Pending Action</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>V<br>র্ণাট্য<br>C = Source File<br>NewBehaviourScript.cs<br>/Curveliditor/As<br>delete<br>&gt;<br>P<br>NewBehaviourScript.cs.meta<br>//CurveEditor/As<br>META File<br>delete</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Submitting a changeset in P4V</p>
+<p>UVCS workflows are a little different because you can work in centralized, distributed, or multi-site configurations.</p>
+<table>
+<thead>
+<tr>
+<th>UVCS (centralized)</th>
+<th></th>
+<th>UVCS (distributed)</th>
+<th></th>
+<th>UVCS (multi-site)</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>—</td>
+<td>Sync repositories</td>
+<td>—</td>
+<td>Pull changes from the</td>
+<td>—</td>
+<td>A hybrid of the two,</td>
+<td></td>
+</tr>
+<tr>
+<td>—</td>
+<td>Pull visible</td>
+<td></td>
+<td>server</td>
+<td></td>
+<td>depending on your<br>setup</td>
+<td></td>
+</tr>
+<tr>
+<td>—</td>
+<td>Check out files to work<br>on</td>
+<td>—</td>
+<td>Check in changes to<br>your local copy</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>—</td>
+<td>Make edits</td>
+<td>—</td>
+<td>Pull any new changes</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>—</td>
+<td>Check in changes</td>
+<td>—</td>
+<td>Push your changes<br>back up to the server</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>—</td>
+<td>Sync repositories</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>—</td>
+<td>Push visible</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Multi-site configurations can be tailored to custom needs, with each user working in either a centralized or distributed workflow.</p>
+<p><span id="page-56-0"></span><img src="_page_56_Picture_0.jpeg" alt=""></p>
+<p>Consider the following example of two teams:</p>
+<ul>
+<li>Each team has an on-site server.</li>
+<li>Team members at both sites check in locally or distributed but benefit from the speed of a close on site server.</li>
+<li>Servers push/pull between one another to keep fully or partially in sync.</li>
+</ul>
+<p><img src="_page_56_Figure_6.jpeg" alt=""></p>
+<p>Multi-site UVCS configuration</p>
+<h3 id="know-your-toolset">Know your toolset</h3>
+<p>Whichever VCS your team chooses to work with, make sure that the team is comfortable using it and understands the tools at their disposal including visual clients.</p>
+<p>If you&#39;re working with Git, not everyone needs to use the same GUI client. But make sure that everyone is comfortable with the commit &gt; pull &gt; push workflow, and that they know how to commit only the files they need.</p>
+<p>If you&#39;re working with UVCS, let your artists get comfortable using <a href="https://unity.com/solutions/version-control-artists">Gluon</a> to simplify their workflow. Gluon lets you decide which files you want to work on and only download those, removing the need to download and manage the entire project. It allows you to lock a file to prevent others from working on it, and, once you&#39;re finished, users can submit files back to the repository and unlock them again.</p>
+<p><span id="page-57-0"></span><img src="_page_57_Figure_1.jpeg" alt=""></p>
+<p>Gluon in UVCS</p>
+<p>If you are working with Perforce Helix Core, use the built-in Unity Editor tools for managing version control directly from the Editor. This is incredibly useful, both for artists or for general handling of Unity asset files such as scenes, Prefabs, and so on. You can check out assets for modification in the Editor, make your changes, and then check them back in without even leaving Unity.</p>
+<h2 id="feature-branches-and-git-flow">Feature branches and Git Flow</h2>
+<p>When you&#39;re working on a long-standing project with multiple release cycles, feature branching is hugely beneficial to your workflow. Often, teams work out of the same branch of a repo that would likely be called trunk, master, or main. When you do this, your entire project moves along the same timeline.</p>
+<p><img src="_page_57_Figure_6.jpeg" alt=""></p>
+<p>Development along the main branch in UVCS</p>
+<p>However, it can be beneficial to split the work off into several branches to work more effectively as a team.</p>
+<p>In Git, a specific workflow called Git Flow focuses on using different branches for features, bug fixes, and releases. A developer starts out work on a new feature inside an isolated branch, and when they&#39;re finished, it&#39;s merged back into the main branch. Meanwhile, someone else may have had to do a hotfix on the previous release, fixed a bug, and released a new version safely, without any of the features still under development being included.</p>
+<p><img src="_page_58_Figure_3.jpeg" alt=""></p>
+<p>A Git Flow workflow allows for easier release management.</p>
+<p>UVCS also features <a href="https://docs.plasticscm.com/book/#_one_task_one_branch">task branches</a>. For this pattern, you create a new branch for every task that you track. While in Git Flow, we use feature branches to develop complete, sometimes large, features, task branches in UVCS are meant to be short-lived. If a task takes more than a handful of commits to implement, odds are it could be broken down into smaller tasks.</p>
+<p><span id="page-59-0"></span><img src="_page_59_Figure_1.jpeg" alt=""></p>
+<p>Perforce Helix Core uses a system called Streams to facilitate this style of workflow. When creating a depot to work in, you need to set it up as a stream depot type. Then, you can use the Stream Graph view to create new streams. Every stream other than the mainline stream will need to have a parent stream, so changes can be copied back up-stream.</p>
+<h2 id="pull-requests">Pull requests</h2>
+<p>Once you&#39;ve completed work on a feature branch, it&#39;s a good practice to use pull requests to get your changes back into the main stream of the repo. Pull requests are created by the developers of the feature or task, and it&#39;s usually the responsibility of a senior developer or DevOps to review the changes before accepting them into the mainline.</p>
+<p><img src="_page_59_Figure_5.jpeg" alt=""></p>
+<p>A closed pull request on GitHub</p>
+<p><img src="_page_60_Picture_0.jpeg" alt=""></p>
+<p>UVCS and Perforce both have automated tools to help manage merging branches back into the mainline. UVCS does this with the help of <a href="https://unity.com/solutions/version-control-programmers">Mergebot</a>, which automatically merges branches of a repo once they&#39;ve been reviewed and passed validation. Perforce has an additional platform, <a href="https://www.perforce.com/products/helix-swarm">Helix Swarm</a>, for managing code reviews that can also be set up with automated testing.</p>
+<p><img src="_page_60_Picture_2.jpeg" alt=""></p>
+<p>UVCS code reviews are included in the GUI.</p>
+<h2 id="-span-id-page-61-0-span-get-started-with-uvcs-in-unity-6"><span id="page-61-0"></span>Get started with UVCS in Unity 6</h2>
+<p>The <a href="https://unity.com/products/unity-devops">Unity DevOps offering</a> comprises UVCS and Build Automation. UVCS is free for up to three (3) team members (seats) and up to 5GB of data per month. After that, pricing depends on your monthly active users and total cloud storage. UVCS sends warning emails to the UVCS organization owner when you reach 50%, 75%, and 90% of your usage allowance for any of the UVCS services so it&#39;s easy for you to keep track of your usage.</p>
+<p>See the <a href="https://unity.com/products/compare-plans/unity-cloud">Unity Cloud pricing plans page</a> for more information or, sign into the Unity Cloud dashboard and go to the <a href="https://cloud.unity.com/home/organizations/default/devops/about">DevOps dashboard &quot;About&quot; page</a>.</p>
+<p>There are three ways to access UVCS: via multiple applications and repositories through the UVCS <a href="https://docs.unity.com/ugs/en-us/manual/devops/manual/version-control-desktop-client">desktop client</a>, by adding it to your projects <a href="https://learn.unity.com/tutorial/how-to-use-the-unity-hub?courseId=6401bbfcedbc2a22aaebd59b">through the Unity Hub</a>, or accessing the repository on Unity cloud via your web browser.</p>
+<p><span id="page-62-0"></span><img src="_page_62_Picture_0.jpeg" alt=""></p>
+<h2 id="use-uvcs-in-a-unity-project">Use UVCS in a Unity project</h2>
+<p>Unity will automatically set up a repository (repo) when you create a project using the Unity Hub and check the <strong>Version Control</strong> checkbox.</p>
+<table>
+<thead>
+<tr>
+<th>Use Unity Version Control</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Unity Version Control Organization<br>pete GD</td>
+<td></td>
+</tr>
+<tr>
+<td>Repository<br>ACE FLYING</td>
+<td></td>
+</tr>
+<tr>
+<td>Server location<br>Europe West - Netherlands</td>
+</tr>
+</tbody>
+</table>
+<p>Setting up Version Control in Unity Hub</p>
+<p>This means that your project&#39;s data and files will be stored both locally on your machine, but also on the cloud, in order to help with collaboration and act as a safety backup. The name of your project becomes the name of the repo, and you can choose the server that is closest to you for high speed connections.</p>
+<p>The Assets, Packages, and Project Settings folders are backed up onto the server on first use. You can access these files by logging into the Unity Cloud and in the repository select <strong>File Explorer</strong>. This shows you all the files that exist on the cloud repo.</p>
+<p><img src="_page_62_Picture_8.jpeg" alt=""></p>
+<p>The File Explorer on the Unity Cloud dashboard shows the structure of files and folders in the repo.</p>
+<p>UVCS ignores the Library, Logs and User Settings folders, as these are auto-generated on your computer and take up a lot of space.</p>
+<p>Other folders that are ignored by UVCS will have a green box with a forward slash icon below the folder or file in the Project window.</p>
+<p><img src="_page_63_Figure_3.jpeg" alt=""></p>
+<p>Ignored files that are not backed up on the cloud are shown with a green box containing a forward slash.</p>
+<p>Be sure to include the Settings folder in the <strong>Pending Changes</strong> section of the Version Control window if the project uses URP or HDRP. If the Settings folder has a forward slash in a green box, select it and right-click. Choose <strong>Version Control&gt; Add to source control</strong>.</p>
+<p>The forward slash will become a plus icon in a green circle and these files will now be added to the pending changes list, ready to be uploaded to the cloud.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Select Dependencies</th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>Refresh<br>Reimport</td>
+<td>Ctrl+R</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Reimport All</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Extract From Prefab</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Unity Version Control</td>
+<td>&gt;</td>
+<td>Show pending changes view</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Update UXML Schema</td>
+<td></td>
+<td>Add to source control</td>
+<td>B</td>
+</tr>
+<tr>
+<td>Assets &gt; Settings</td>
+<td>Open C# Project<br>View in Import Activity Window</td>
+<td></td>
+<td>Checkout<br>Check in</td>
+<td></td>
+</tr>
+<tr>
+<td>URP-Balan<br>URP-Balan</td>
+<td>Properties_<br>URP-HighFi URP-HighFi</td>
+<td>Alt+P<br>URP-Perfor</td>
+<td>Undo changes<br>Add to ignored list<br>Add to hidden changes list</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>Diff with previous revision<br>View file history</td>
+<td>Shift+Ctrl+D<br>Ctrl+H</td>
+</tr>
+</tbody>
+</table>
+<p>Including settings files to the pending changes view</p>
+<p><span id="page-64-0"></span><img src="_page_64_Picture_0.jpeg" alt=""></p>
+<h2 id="inviting-other-team-members">Inviting other team members</h2>
+<p>In the Version Control window there is a button on the right of the window that you can use to invite team members.</p>
+<p><img src="_page_64_Picture_3.jpeg" alt=""></p>
+<p>The <strong>Invite Members to Organization</strong> option in the Version Control window</p>
+<p>This will take you to the Unity Cloud login page. Use your Unity ID and password to login.</p>
+<p>DevOps will open from the shortcuts on the left and the seats section will then also open, allowing you to add extra seats to your current project. At the time of writing you can&#39;t add more than three seats in the free tier. You can upgrade to Cloud Pro to buy additional seats. See the <a href="https://unity.com/products/compare-plans/unity-cloud">Unity Cloud pricing plans page</a> for more information or, sign into the Unity Cloud dashboard and go to the <a href="https://cloud.unity.com/home/organizations/default/devops/about">DevOps dashboard &quot;About&quot; page</a>.</p>
+<p><img src="_page_64_Picture_7.jpeg" alt=""></p>
+<p>Add extra seats from the DevOps section on the Unity Cloud.</p>
+<p>Assign the new members a seat in your project. They should also be invited to become organization members. This gives them full access to all data on the dashboard for the cloud including usage statistics.</p>
+<p>Go to <strong>Administration&gt;Organization members</strong> and click the <strong>invite organization members</strong> button to add extra people to your organization.</p>
+<p><img src="_page_65_Picture_2.jpeg" alt=""></p>
+<p>Add extra organization members from the <strong>Administration</strong> option.</p>
+<p>Assign each member an appropriate role. Choose from guest, user, or admin. Users and admin members can see all projects and you can assign roles in the project members section to give them the appropriate level of access to the project data.</p>
+<p>This allows them to access the project and contribute to it based on their role. Users with admin status will have full access to the options available on the cloud.</p>
+<p>An email is sent to the other members that you invite.</p>
+<p>The invited member should then open Unity Hub and click on the drop down next to the <strong>Add</strong> button and choose <strong>Add UVCS repository</strong>:</p>
+<p><img src="_page_65_Picture_8.jpeg" alt=""></p>
+<p>Click <strong>Add UVCS repository</strong> to open a project on the Unity Cloud.</p>
+<p><strong>Note</strong>: It&#39;s important that all team members are using the same version of Unity, otherwise it can cause issues when converting the project between versions.</p>
+<p>This will then download the project from the cloud repository onto the user&#39;s computer.</p>
+<h2 id="-span-id-page-66-0-span-check-in-changes"><span id="page-66-0"></span>Check in changes</h2>
+<p>As you make changes to your project you will see a green <strong>+</strong> icon on the files that are changed. This shows you which files to check into the server for update.</p>
+<p><img src="_page_66_Picture_3.jpeg" alt=""></p>
+<p>A green circle with a plus icon indicates a file has been changed and needs to be checked in.</p>
+<p>Update your project often to make rolling back easier. Updated files are shown in the <strong>Pending Changes</strong> section of the Version Control window. Add a short, concise description of the changes you have made and click the <strong>Check in Changes</strong> button.</p>
+<p><img src="_page_66_Picture_6.jpeg" alt=""></p>
+<p>The Pending Changes section allows you to check in changes you make to your project.</p>
+<p>Other users who are working on the same branch will see a yellow download icon appear in the Version Control window, under the <strong>Incoming Changes</strong> tab. This displays the changes that are made by other users.</p>
+<p><img src="_page_66_Picture_9.jpeg" alt=""></p>
+<p>Other users can see your checked-in changes and can update their workspace to incorporate them.</p>
+<p>They can click the <strong>Update</strong> workspace button to update their workspace and incorporate your changes.</p>
+<p><img src="_page_67_Picture_0.jpeg" alt=""></p>
+<p>Or they can choose to see the differences from before and after if it&#39;s an existing file that has been modified by right-clicking on the changed file and selecting <strong>Diff</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>4<br>√ Item (1/1 selected)</th>
+<th>Status</th>
+<th>Date modified</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>✓ Changed items (1/1 selected)</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&gt; Assets\Scripts\Rotator.cs</td>
+<td>Changed</td>
+<td>Open</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>Diff</td>
+<td>Cir + D</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>Undo changes</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>Checkout</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>Delete</td>
+<td>DEL</td>
+</tr>
+</tbody>
+</table>
+<p>Check the difference between the changed file and the original file.</p>
+<p>In the Diff viewer they can now see the original version on the left and the incoming changes on the right. This is useful for C# scripts. Unity&#39;s code-aware merge tech, Semantic Merge, tracks moved code to help you focus only on the relevant changes.</p>
+<table>
+<thead>
+<tr>
+<th>Differences -</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Text diff</td>
+<td>Semantic diff</td>
+<td>O</td>
+<td>0</td>
+<td>(FD<br>D<br>Current: 1/2</td>
+</tr>
+<tr>
+<td></td>
+<td>cs:30</td>
+<td>L</td>
+<td></td>
+<td>cs:28</td>
+</tr>
+<tr>
+<td>11<br>12<br>13<br>14<br>15<br>16<br>17</td>
+<td>[Tooltip(&quot;Prefab for the primary objectives&quot;)]<br>public PoolObjectDef secondaryObjectivePrefab;<br>Dictionary<Objective, ObjectiveToast> m_ObjectivesDictionary;<br>public Text carPosition;<br>private int carPos = 1;</td>
+<td></td>
+<td></td>
+<td>[Tooltip(&quot;Prefab for the primary objectives&quot;)]<br>11<br>public PoolObjectDef secondaryObjectivePrefab;<br>12<br>13<br>Dictionary<Objective, ObjectiveToast> m_ObjectivesDic<br>14<br>15<br>16<br>public Text carPosition;<br>17<br>public Text nitroPower;</td>
+</tr>
+<tr>
+<td>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26</td>
+<td>void Awake()<br>m_ObjectivesDictionary = new Dictionary=Objective, ObjectiveToast&gt;<br>carPosition.text = carPos.ToString();<br>public void RegisterObjective(Objective objective)</td>
+<td></td>
+<td></td>
+<td>18<br>19<br>void Awake()<br>20<br>21<br>m_ObjectivesDictionary = new Dictionary<Objective<br>22<br>23<br>24<br>public void RegisterObjective(Objective objective)<br>25<br>26<br>objective.onUpdateObjective += OnUpdateObjective;</td>
+</tr>
+</tbody>
+</table>
+<p>The Diff viewer displays the original on the top, in orange, and the changed file below, in blue.</p>
+<p>All changesets can be seen in a list in the <strong>Changesets</strong> section, showing who made the changes on what day and time. The description of the change and the files that have been updated are included in the Changeset list.</p>
+<p><span id="page-68-0"></span><img src="_page_68_Picture_0.jpeg" alt=""></p>
+<table>
+<thead>
+<tr>
+<th>Console<br>@ Unity Version Control</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Incoming Changes<br>nges</td>
+<td>×<br>Changesets<br>Branches</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Creation date</td>
+<td>Created by</td>
+<td>Comment</td>
+</tr>
+<tr>
+<td>13/06/2024 12:19:23</td>
+<td>steve@email.com</td>
+<td>Created a rotator script for the airplane propellor</td>
+</tr>
+<tr>
+<td>11/06/2024 13:35:19</td>
+<td>3 pete@email.com</td>
+<td>Created a scene with spline extrusion</td>
+</tr>
+<tr>
+<td>11/06/2024 13:07:19</td>
+<td>2 pete@email.com</td>
+<td>Added WW2 Thunderbolt asset to a new scene</td>
+</tr>
+<tr>
+<td>10/06/2024 20:40:52</td>
+<td>steve@email.com</td>
+<td>Added a new spline</td>
+</tr>
+<tr>
+<td>10/06/2024 20:35:17</td>
+<td>@ steve@email.com</td>
+<td>Added a red capsule</td>
+</tr>
+<tr>
+<td>10/06/2024 20:34:02</td>
+<td>steve@email.com</td>
+<td>Setup second workspace</td>
+</tr>
+<tr>
+<td>06/06/2024 19:33:23</td>
+<td>(2) pete@email.com</td>
+<td>Root dir</td>
+</tr>
+</tbody>
+</table>
+<p>A display of all the changesets made to the project; you can roll back to any changeset</p>
+<h2 id="the-uvcs-desktop-client">The UVCS desktop client</h2>
+<p>The Version Control window in the Unity Editor gives you the standard features you&#39;ll need to push and pull data from the cloud. The desktop client provides additional features.</p>
+<p>To launch the desktop client click on <strong>Branch Explorer</strong> when working in the expanded mode. If you have not yet installed the client this will prompt you to do so.</p>
+<p><img src="_page_68_Picture_7.jpeg" alt=""></p>
+<p>Click the Branch Explorer button to launch the UVCS desktop app.</p>
+<p><img src="_page_68_Figure_9.jpeg" alt=""></p>
+<p>The version control apps, including Gluon and Unity DevOps Version Control, the latter being the UVCS desktop app</p>
+<p>Gluon is the more beginner-friendly software while UVCS is the full-featured option. By default clicking Branch Explorer will open UVCS software. You can switch between Gluon and UVCS by opening them from the installed software on your computer. Unity will auto detect which version you are using and switch to using that system.</p>
+<table>
+<thead>
+<tr>
+<th>Workspace: Kart Racer</th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kart Racer<br>10</td>
+<td></td>
+<td>33@Kart Racer<br>Added a black and white variation of Intro art 2</td>
+<td></td>
+</tr>
+<tr>
+<td>Explore workspace</td>
+<td>Checkin changes</td>
+<td>Incoming Changes</td>
+<td>Changesets</td>
+</tr>
+<tr>
+<td>CA<br>Configure</td>
+<td>Update workspace</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Item</td>
+<td></td>
+<td></td>
+<td>Status</td>
+</tr>
+<tr>
+<td></td>
+<td>&gt; e:\Udemy Unity\Version control</td>
+<td></td>
+<td>Controlled</td>
+</tr>
+<tr>
+<td>&gt;<br>Assets</td>
+<td></td>
+<td></td>
+<td>Controlled</td>
+</tr>
+<tr>
+<td>&gt;<br>Packages</td>
+<td></td>
+<td></td>
+<td>Controlled</td>
+</tr>
+<tr>
+<td>&gt;</td>
+<td>ProjectSettings</td>
+<td></td>
+<td>Controlled</td>
+</tr>
+<tr>
+<td>&gt;<br>.VS</td>
+<td></td>
+<td></td>
+<td>Ignored</td>
+</tr>
+<tr>
+<td>&gt;<br>Library</td>
+<td></td>
+<td></td>
+<td>Ignored</td>
+</tr>
+<tr>
+<td>&gt;<br>Logs</td>
+<td></td>
+<td></td>
+<td>Ignored</td>
+</tr>
+<tr>
+<td>&gt;<br>obj</td>
+<td></td>
+<td></td>
+<td>Ignored</td>
+</tr>
+<tr>
+<td>&gt;<br>Temp</td>
+<td></td>
+<td></td>
+<td>Ignored</td>
+</tr>
+<tr>
+<td>&gt;</td>
+<td>UserSettings</td>
+<td></td>
+<td>Ignored</td>
+</tr>
+<tr>
+<td>.vsconfig</td>
+<td></td>
+<td></td>
+<td>Private</td>
+</tr>
+<tr>
+<td></td>
+<td>Assembly-CSharp.csproj</td>
+<td></td>
+<td>Ignored</td>
+</tr>
+<tr>
+<td></td>
+<td>ignore.conf</td>
+<td></td>
+<td>Ignored</td>
+</tr>
+<tr>
+<td></td>
+<td>Kart Racer.sin</td>
+<td></td>
+<td>Ignored</td>
+</tr>
+<tr>
+<td></td>
+<td>KartGame.Al.csproj</td>
+<td></td>
+<td>Ignored</td>
+</tr>
+<tr>
+<td></td>
+<td>KartGame.Al.Editor.csproj</td>
+<td></td>
+<td>Ignored</td>
+</tr>
+<tr>
+<td>1</td>
+<td>KartGame.csproj</td>
+<td></td>
+<td>Ignored</td>
+</tr>
+<tr>
+<td></td>
+<td>KartGame.Editor.csproj</td>
+<td></td>
+<td>Ignored</td>
+</tr>
+<tr>
+<td></td>
+<td>Unity.Karting. Tutorials.csproj</td>
+<td></td>
+<td>Ignored</td>
+</tr>
+<tr>
+<td></td>
+<td>Unity.Microgame. Tutorials.csproj</td>
+<td></td>
+<td>Ignored</td>
+</tr>
+</tbody>
+</table>
+<p>Gluon is a version control app that&#39;s artist-friendly.</p>
+<p><img src="_page_69_Figure_3.jpeg" alt=""></p>
+<p>UVCS is the full software.</p>
+<h2 id="-span-id-page-70-0-span-using-gluon"><span id="page-70-0"></span>Using Gluon</h2>
+<p>As explained in the section that introduces UVCS, Gluon is a slim client designed specifically with artists in mind. It allows you to pick only the files that you&#39;re going to work on and check them out from the server, locking them from being modified by anyone else. Once you complete your work, you check the files back in. The Gluon GUI removes the more complex concepts that work better for programmers than for less technical users.</p>
+<p>Open Gluon from the installed Unity DevOps Version Control applications.</p>
+<p><img src="_page_70_Figure_4.jpeg" alt=""></p>
+<p>The Gluon desktop app can be found from your installed Unity DevOps software.</p>
+<p>It will prompt you to change from full mode to partial mode, the mode which Gluon runs in.</p>
+<p>This warning allows you to change to a partial mode when working in Gluon by clicking <strong>Run an update</strong>.</p>
+<p>Inside Unity, a <strong>Configure Gluon</strong> button replaces the <strong>branches</strong> icon. This will open the Gluon app every time you click on it.</p>
+<p><img src="_page_70_Picture_10.jpeg" alt=""></p>
+<p>Team members using Gluon will now be able to open the Gluon app directly from the Version Control window in Unity.</p>
+<p>You can enable the dark theme by clicking on the options button at the top right of the Gluon app.</p>
+<p><img src="_page_71_Picture_1.jpeg" alt=""></p>
+<p>In Gluon you can use the options drop down at the top right to enable the dark theme.</p>
+<p>Gluon uses the main branch only, providing a visual, artist-friendly workspace. You can use Gluon to easily access the <strong>Explore workspace</strong> feature to upload and download files as needed.</p>
+<p>In the Explore workspace section click the <strong>Configure</strong> button to make changes to the files on the repo.</p>
+<p><img src="_page_71_Picture_5.jpeg" alt=""></p>
+<p>Click the <strong>Configure</strong> button to make changes to files on the repo.</p>
+<p><img src="_page_71_Picture_7.jpeg" alt=""></p>
+<p>Select the files you need to download and click Apply in Gluon.</p>
+<p>Click on the checkboxes next to files to either download or remove from the Explore workspace view. Files that will download to the Unity Editor turn green and files that you want to remove from Unity will turn red. Click <strong>Apply</strong> when done and then <strong>Update workspace</strong> so the files will be available in your version of Unity.</p>
+<p>Even if you delete files inside of Gluon they only relate to this current changeset and any future changesets you create. The files will still be on the cloud as they will be referenced by previous changesets.</p>
+<p>You can see the visual change of a texture that has numerous revisions by right-clicking on a revision in the options section on the right side of the Gluon app and selecting <strong>Diff with previous revision</strong>.</p>
+<p><img src="_page_72_Picture_2.jpeg" alt=""></p>
+<p>See a visual change between revisions by selecting <strong>Diff with previous revision</strong>.</p>
+<p>This will show the differences between the previous revision and the current one.You have a few options in which to view this including swipe, which lets you drag a swipe slider along the image to view before and after.</p>
+<p><img src="_page_72_Picture_5.jpeg" alt=""></p>
+<p>Swipe option in the Diff viewer</p>
+<p><span id="page-73-0"></span><img src="_page_73_Picture_0.jpeg" alt=""></p>
+<h2 id="uvcs-desktop-app">UVCS desktop app</h2>
+<p>The UVCS desktop app is the full, complete version control software suitable for team members who want access to branching. You can open it from the installed Unity DevOps Version Control applications.</p>
+<p>If you used Gluon previously, it will prompt you to change from partial mode to full mode, the mode which UVCS runs in.</p>
+<p>Change from partial mode to full mode for UVCS desktop version control software.</p>
+<h2 id="branches">Branches</h2>
+<p>Branches allow different team members to work on the same project independently of each other. For example, a team member might create a new feature on a separate branch, while other team members work on the main branch. Features can be things like creating the code for achievements, adding the mechanics for different types of pickups, etc.</p>
+<p>When they complete their task they can merge their branches back into the main branch. All team members working on the project will then be able to update their workspace to incorporate all the work that has been done.</p>
+<p>When you select the Branch Explorer within the Version Control window in the Unity Editor, it opens the UVCS app and takes you to the Branches section.</p>
+<p><img src="_page_73_Picture_11.jpeg" alt=""></p>
+<p>You can open the Branch Explorer section of the UVCS desktop app.</p>
+<h4 id="each-of-the-circles-represents-a-changeset-your-current-changeset-has-a-house-icon-">Each of the circles represents a changeset. Your current changeset has a house icon.</h4>
+<p><img src="_page_74_Figure_2.jpeg" alt=""></p>
+<p>Right-click on a changeset and choose <strong>Create branch from this changeset.</strong></p>
+<p><img src="_page_74_Picture_4.jpeg" alt=""></p>
+<p>The Create a branch from a changeset option</p>
+<p>You will now be working on a separate branch. Any changes made by team members on the main branch or other feature branches will not be sent to you. This reduces the risk of someone else&#39;s changes conflicting with your progress. You can update their changes later after merging.</p>
+<p>Branches can have multiple changesets marked by circles just like the main branch.</p>
+<p>When you complete your work on the branch you can merge your branch back to the main one by right-clicking and choosing <strong>Merge from this changeset to…</strong>.</p>
+<p><img src="_page_75_Figure_2.jpeg" alt=""></p>
+<p>Merge a branch back into another branch such as Main.</p>
+<h4 id="it-will-display-available-branches-select-the-branch-you-want-to-merge-to-">It will display available branches. Select the branch you want to merge to.</h4>
+<table>
+<thead>
+<tr>
+<th>Available Unity VCS branches</th>
+<th></th>
+<th></th>
+<th>×</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Available Unity VCS branches<br>Please select a branch from the list below:</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>0</td>
+<td></td>
+<td></td>
+<td>O Filter</td>
+</tr>
+<tr>
+<td>Name</td>
+<td>2<br>Repository</td>
+<td>Created by</td>
+<td>Creation date</td>
+</tr>
+<tr>
+<td>80 /main</td>
+<td>Kart Racer</td>
+<td>Dave@mail.com</td>
+<td>24/06/2024 12:45:</td>
+</tr>
+<tr>
+<td>2 /main/Feature 1 - Nitro boost</td>
+<td>Kart Racer</td>
+<td>Dave@mail.com</td>
+<td>09/07/2024 17:05 ::</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>Cancel<br>OK<br>-</td>
+</tr>
+</tbody>
+</table>
+<p>Available branches to merge to</p>
+<p><span id="page-76-0"></span><img src="_page_76_Picture_0.jpeg" alt=""></p>
+<p>This opens the merge section and shows if there are any conflicts. If there are no conflicts, click the <strong>Check in merge</strong> button.</p>
+<p><img src="_page_76_Picture_2.jpeg" alt=""></p>
+<p>UVCS checks all files on your branch for any conflicts with the main branch.</p>
+<p>If someone on the main branch has made changes to the same file or files that you have, this might cause conflicts when trying to merge.</p>
+<h2 id="handling-conflicts">Handling conflicts</h2>
+<p>A script or a scene file might be changed by two or more people on different branches. Trying to merge them together will trigger a merge conflict.</p>
+<p><img src="_page_76_Picture_7.jpeg" alt=""></p>
+<p>Two conflicts have been identified showing the files containing the conflicts.</p>
+<p>Right-click on the files that have conflicts to show the differences and then decide if you want to keep or remove the changes.</p>
+<p><img src="_page_76_Picture_10.jpeg" alt=""></p>
+<p>Right-click menu showing the options available to handle a merge conflict</p>
+<p><img src="_page_77_Picture_0.jpeg" alt=""></p>
+<p>With a script you can choose <strong>Diff source with destination</strong>. This will open the Diff viewer so you can see how your file is different to the one on the branch you want to merge with.</p>
+<table>
+<thead>
+<tr>
+<th>Differences .</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Text diff</td>
+<td>Semantic diff</td>
+<td>(1)</td>
+<td>O</td>
+<td>0<br>0<br>Current: 1/2</td>
+</tr>
+<tr>
+<td></td>
+<td>es-30</td>
+<td>I</td>
+<td></td>
+<td>cs:28</td>
+</tr>
+<tr>
+<td>11<br>12<br>13<br>14<br>15<br>16</td>
+<td>[Tooltip(&quot;Prefab for the primary objectives&quot;)]<br>public PoolObjectDef secondaryObjectivePrefab;<br>Dictionary@bjective, ObjectiveToast&gt; m_ObjectivesDictionary;<br>public Text carPosition;</td>
+<td></td>
+<td></td>
+<td>11<br>[Tooltip(&quot;Prefab for the primary objectives&quot;)]<br>public PoolObjectDef secondaryObjectivePrefab;<br>12<br>13<br>14<br>Dictionary &lt; Objective , ObjectiveToast&gt; = ObjectivesDic<br>15<br>16<br>public Text carPosition;</td>
+</tr>
+<tr>
+<td>17</td>
+<td>private int carpos = 1;</td>
+<td></td>
+<td></td>
+<td>17<br>public Text nitroPomer;</td>
+</tr>
+<tr>
+<td>18<br>19<br>20<br>21<br>22</td>
+<td>void Amake()<br>= ObjectivesDictionary = new Dictionary@Djective, ObjectiveToast&gt;</td>
+<td></td>
+<td></td>
+<td>18<br>19<br>void Amake()<br>20<br>21<br>= ObjectivesDictionary = new Dictionary<objective<br>22</td>
+</tr>
+<tr>
+<td>23<br>24<br>25<br>26</td>
+<td>carPosition.text = carPos. ToString();<br>public void RegisterObjective(Objective objective)</td>
+<td></td>
+<td></td>
+<td>23<br>public volo RegisterObjective(Objective objective)<br>24<br>25<br>26<br>objective.onUpdateObjective += OmUpdateObjective;</td>
+</tr>
+</tbody>
+</table>
+<p>The Diff viewer shows the differences in the code between your file and the one on the branch you want to merge with.</p>
+<p>This can help you to decide whether to overwrite the file on the other branch with your file. To do this choose <strong>Merge keeping source changes</strong>:</p>
+<p>Or you can discard your changes and keep the original file on the other branch. To do this choose <strong>Merge keeping destination changes</strong>:</p>
+<p>Finally, you can choose <strong>Merge selected files</strong> and UVCS will merge the two files together attempting to keep both sets of changes, although you should check the script after the merge to ensure it has done this correctly:</p>
+<p>The Branch Explorer will now show which changesets have inherited merges from other branches.</p>
+<p><img src="_page_77_Figure_11.jpeg" alt=""></p>
+<p>Branch merged back into Main</p>
+<p><span id="page-78-0"></span>You can also right-click on any of the previous changesets and choose <strong>Switch workspace to this changeset</strong> to revert back to that point. This may be necessary if you added items or scripts that disrupted the game or caused issues.</p>
+<p><img src="_page_78_Figure_2.jpeg" alt=""></p>
+<p>You can switch back to any previous changeset by right-clicking on the changeset of choice.</p>
+<p>Changesets that cause serious errors or bugs can be deleted. These should not have any changesets leading forward from them, or labels or sub branches.</p>
+<p>Right-click on a changeset with errors and go to <strong>Advanced options &gt; Delete changeset</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>New code review for this changeset</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Go to parent changeset</td>
+<td></td>
+</tr>
+<tr>
+<td>Advanced options</td>
+<td>Move from this changeset to a different branch<br>Delete changeset</td>
+</tr>
+</tbody>
+</table>
+<p>Delete a changeset from the right-click menu.</p>
+<h2 id="merge-rules">Merge rules</h2>
+<p>A good idea is to implement merge rules to prevent merge conflicts from disrupting your team&#39;s workflow. This can be used in larger teams where team managers want to approve a branch before allowing it to be merged into the main branch. This prevents introducing errors into the main workflow.</p>
+<p>Log into the Unity Cloud dashboard, go to <strong>settings</strong>, then <strong>Merge rules</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>0<br>Overview</th>
+<th>Unity Version Control &gt; Settings &gt; &gt; Merge Rules</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>68<br>Explore repositories<br>್ಕೆ<br>Version Control -<br>UVCS organizations</td>
+<td>Organization settings<br>←</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Or select organization<br>0<br>V</td>
+<td>Lock Rules<br>Network Allow Li<br>Integrations<br>Merge Rules<br>Mergebots<br>&gt;</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Repositories<br>Seats<br>User groups</td>
+<td>Merge rules<br>+ New merge rule<br>Merge Rules define conditions that branches must meet in order to be merged</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Usage reporting<br>Settings</td>
+<td>into other branches. Show more</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>િત<br>Build Automation -<br>Build history</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Create a new merge rule from the Unity Cloud settings.</p>
+<p>Click the <strong>New merge rule</strong> button and select from one of the four options. <strong>Only allow merge if reviewed</strong> will ensure that a merge can only take place after being reviewed and approved by other team members, or team managers.</p>
+<p>You can also apply this to all repos if you have multiple that you are working on, or specify a specific repo from the drop down list.</p>
+<table>
+<thead>
+<tr>
+<th>← New Merge Rule</th>
+<th>Enable rule<br>Cancel Save rule</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Merge condition<br>Condition will apply to the<br>repositories you specify.</td>
+<td>Only allow merge if reviewed<br>0<br>This rule will only accept merges whose source branches have an<br>approved review.<br>Restrict merge to branch<br>This rule will only accept merges if the source branch matches the rule<br>definition.<br>Only allow merges from parent<br>This rule will reject merges unless the source branch is the parent<br>branch, too.<br>Only allow merges from children<br>This rule will reject merges unless the source branch is a direct child of<br>the destination one.</td>
+</tr>
+<tr>
+<td></td>
+<td>Apply condition to these repositories:<br>Repositories<br>All repositories<br>P</td>
+</tr>
+</tbody>
+</table>
+<p>The option <strong>Only allow merge if reviewed</strong> requires other team members to review your branch before merge.</p>
+<p>Specify which branches you would like the merge rules to apply to. It needs a source branch, which is the branch you are working on, and a destination branch, the branch you want to merge to. Click the <strong>Save rule</strong> button and it will now be active. At any point you can disable or delete a rule from the Unity Cloud.</p>
+<table>
+<thead>
+<tr>
+<th>Allow merge from this branch(es)<br>Branch pattern<br>Development<br>D</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Use * to specify patterns. e.g. main®<br>+ Add branch pattern</td>
+</tr>
+<tr>
+<td>Attributes (1)<br>+ Add attributes</td>
+</tr>
+<tr>
+<td>Allow merge into this branch(es)</td>
+</tr>
+<tr>
+<td>main<br>D</td>
+</tr>
+<tr>
+<td>Use <em> to specify patterns. e.g. main</em><br>+ Add branch pattern</td>
+</tr>
+<tr>
+<td>Attributes (1)<br>+ Add attributes</td>
+</tr>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Include which branches the merge rule will apply to.</p>
+<p>Team members wanting to merge their branch will have to request a branch review.</p>
+<p>Go to the Branches section and right-click on the branch you want to merge. Choose the option <strong>New code review for this branch.</strong></p>
+<table>
+<thead>
+<tr>
+<th>Workspace Explorer</th>
+<th>O<br>Filters: Date v<br>Branch v<br>User v</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10<br>Pending Changes</td>
+<td>A<br>Name</td>
+<td>Repository</td>
+</tr>
+<tr>
+<td>-16<br>Branch Explorer</td>
+<td>2<br>/main</td>
+<td>Branching Strategies</td>
+</tr>
+<tr>
+<td></td>
+<td>/main/Development</td>
+<td>Branching Strategies</td>
+</tr>
+<tr>
+<td>Changesets<br>0-0</td>
+<td>/main/Development/Feature - animated cut &amp;</td>
+<td>Branching Strategies</td>
+</tr>
+<tr>
+<td>Branches</td>
+<td>/main/Development/Feature - animated cut s</td>
+<td>Branching Strategies</td>
+</tr>
+<tr>
+<td>C<br>Labels</td>
+<td>8<br>Main Maualammant /Cantura - Dialuna<br>Create child branch</td>
+<td>Dennahing Ctrategies</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>Ctrl+N<br>Ctrl+Shift+W</td>
+</tr>
+<tr>
+<td>0<br>Attributes</td>
+<td>Switch workspace to this branch</td>
+<td></td>
+</tr>
+<tr>
+<td>13<br>Code Reviews</td>
+<td>Merge from this branch</td>
+<td>Ctrl+M</td>
+</tr>
+<tr>
+<td>t</td>
+<td>Merge from this branch to</td>
+<td></td>
+</tr>
+<tr>
+<td>Sync to Cloud</td>
+<td>Advanced merge</td>
+<td>&gt;</td>
+</tr>
+<tr>
+<td>20<br>Merge</td>
+<td>Diff branch</td>
+<td>Ctrl+D</td>
+</tr>
+<tr>
+<td></td>
+<td>Diff with another branch</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>View changesets in this branch</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Push/Pull</td>
+<td>&gt;</td>
+</tr>
+<tr>
+<td></td>
+<td>Rename</td>
+<td>E2</td>
+</tr>
+<tr>
+<td></td>
+<td>Delete</td>
+<td>Delete</td>
+</tr>
+<tr>
+<td>New code review for this braych</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Create top-level branch</td>
+</tr>
+</tbody>
+</table>
+<p>Request a code review for a branch you want to merge.</p>
+<p>This will contain all the files that have been changed over the course of the entire branch.</p>
+<p>Click on <strong>conversations</strong> to leave a message and invite other team members to review your work. Note that each team member must review the branch before you can merge, so ensure to include only the relevant people. They will then receive an email message to review your code.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Add description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Select user or group</td>
+<td>×</td>
+</tr>
+<tr>
+<td>Please select a user or group from the list below:</td>
+<td></td>
+</tr>
+<tr>
+<td>Both<br>Users<br>Groups</td>
+<td>Q Filter</td>
+</tr>
+<tr>
+<td>Name</td>
+<td>A<br>Type</td>
+</tr>
+<tr>
+<td>ALL USERS</td>
+<td>Special group</td>
+</tr>
+<tr>
+<td>82<br>Administrators</td>
+<td>Group</td>
+</tr>
+<tr>
+<td>13<br>Developers</td>
+<td>Group</td>
+</tr>
+<tr>
+<td>ਮ<br>Pete@mail.com</td>
+<td>User</td>
+</tr>
+<tr>
+<td>Dave@mail.com<br>ਸ</td>
+<td>User</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Selected user or group:</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>OK<br>Cancel</td>
+</tr>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Choose individuals or groups members to review your branch.</p>
+<p>Go to <strong>Code Reviews</strong> to see the progress of the review. Double-click to open it to see if any messages have been left for you.</p>
+<table>
+<thead>
+<tr>
+<th>1</th>
+<th>Workspace Explorer</th>
+<th>O<br>Filters: Last activity ~ Created by √ Reviewer √ Status &gt;</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P</td>
+<td>Pending Changes</td>
+<td>Title</td>
+<td>Status</td>
+</tr>
+<tr>
+<td>16</td>
+<td>Branch Explorer</td>
+<td>( / ) Review of branch /main/Development/Feature - Pickups - Adding pickups to inc<br>{   Review of changeset 19 - Added the pickup items to the scene</td>
+<td>O Under review<br>Reviewed</td>
+</tr>
+<tr>
+<td>0-0</td>
+<td>Changesets</td>
+<td>{/} Review of changeset 18 - Created a Pickups script</td>
+<td>@ Under review</td>
+</tr>
+<tr>
+<td></td>
+<td>Branches</td>
+<td>{ } Review of changeset 19 - Added the pickup items to the scene</td>
+<td>O Under review</td>
+</tr>
+<tr>
+<td>0</td>
+<td>Labels</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>0</td>
+<td>Attributes</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>11</td>
+<td>Code Reviews</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>t</td>
+<td>Sync to Cloud</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>27</td>
+<td>Merge</td>
+<td></td>
+<td>A</td>
+</tr>
+</tbody>
+</table>
+<p>Code reviews show the ongoing progress of requested reviews.</p>
+<p>The invited team members can then mark the branch as either <strong>Rework required</strong> or <strong>Reviewed</strong> and leave a message.</p>
+<p><img src="_page_82_Picture_2.jpeg" alt=""></p>
+<p>Reviewers can click the <strong>Mark Review</strong> button to mark it as rework required or reviewed.</p>
+<p>Once the branch is reviewed it can then be merged. This adds extra security to your project.</p>
+<p>You can also do the same procedure for code reviews on a specific changeset. This might be useful when you want other team members to review your code for bugs or issues, or perhaps suggest ways to improve the code.</p>
+<p>To do this, right-click on a changeset and choose <strong>New code review for this changeset</strong>. You can then invite team members to check your files and give recommendations.</p>
+<p><img src="_page_82_Figure_7.jpeg" alt=""></p>
+<p>Requesting a code review for a changeset</p>
+<p><span id="page-83-0"></span>You can also add labels to a changeset. This might be useful if the changeset is an approved version e.g., version 1.0, or if it&#39;s a stable changeset and can be used for branching.</p>
+<p>Right-click on the changeset and choose <strong>Label this changeset</strong>. Labels prevent the changeset from being deleted. You can remove a label from the labels section if necessary.</p>
+<p><img src="_page_83_Figure_3.jpeg" alt=""></p>
+<p>Label a changeset from the right-click menu. Labels give other users important information about this changeset.</p>
+<h2 id="locking-files">Locking files</h2>
+<p>Locking a file while you are working on it can prevent major merge conflicts. This file will then be locked on the cloud, preventing other team members from making changes to it while it&#39;s locked (they can still access the file in a read-only format). Once the file is checked back in, the lock is removed and other team members can make changes to it.</p>
+<p>Locks are not automatically applied. By default, when you save your progress in Unity, any files you are working on will be marked with a checkout icon.</p>
+<p><img src="_page_83_Picture_9.jpeg" alt=""></p>
+<p>A purple checkout icon appears on the file icon in Unity and also on everyone else&#39;s versions, letting them know that somebody is working on the file.</p>
+<p>The checkout icon in a purple box is displayed on the file on every team member&#39;s computer.</p>
+<p>You can manually checkout a file before you begin working on it. Click the <strong>Checkout</strong> button in the Inspector. Other team members will see that you are working on the file, however, this is not a file lock, so other team members can still make their own changes to the same file. This is not as effective as using file locking.</p>
+<p><img src="_page_83_Picture_13.jpeg" alt=""></p>
+<p>Checkout a file when you are making changes to warn other team members that you are working on it.</p>
+<p>UVCS uses smart locks. This ensures that other team members who want to make changes to this file will be forced to use the latest revision of the file. This is important, as you may be working on a branch that is using an older version of that file. Smart locks checks all branches including the main to find the latest revision of this file and ensures you are working from that version and not an outdated older version.</p>
+<p>To lock files, go into the Branch Explorer.</p>
+<p>In the <strong>Workspace Explorer</strong> view find the file you want to lock, right-click on it and choose <strong>Lock and checkout</strong>. This only works as long as no other team member has checked the file out.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>16J Workspace: Kart Racer</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10</td>
+<td>Kart Racer</td>
+<td></td>
+<td></td>
+<td>31@Kart Racer<br>Updated 3D models</td>
+<td>&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Workspace Explorer</td>
+<td>0</td>
+<td></td>
+<td>Update workspace</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Pending Changes</td>
+<td>Item</td>
+<td></td>
+<td></td>
+<td></td>
+<td>A</td>
+<td>Status</td>
+<td></td>
+<td></td>
+<td>Size</td>
+<td>Dat</td>
+</tr>
+<tr>
+<td></td>
+<td>Branch Explorer</td>
+<td></td>
+<td></td>
+<td>IntroMenuSettings.lighting</td>
+<td></td>
+<td></td>
+<td>Controlled</td>
+<td></td>
+<td></td>
+<td>1.78 KB 24/</td>
+<td></td>
+</tr>
+<tr>
+<td>0-0</td>
+<td>Changesets</td>
+<td></td>
+<td></td>
+<td></td>
+<td>IntroMenuSettings.lighting.meta</td>
+<td></td>
+<td>Controlled</td>
+<td></td>
+<td></td>
+<td>400 bytes 24/</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>LoseScene.unity</td>
+<td></td>
+<td></td>
+<td>Controlled</td>
+<td></td>
+<td></td>
+<td>35.67 KB 24/</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Branches</td>
+<td></td>
+<td></td>
+<td>LoseScene.unity.meta</td>
+<td></td>
+<td></td>
+<td>Controlled</td>
+<td></td>
+<td></td>
+<td>344 bytes 24/</td>
+<td></td>
+</tr>
+<tr>
+<td>1</td>
+<td>Labels</td>
+<td></td>
+<td></td>
+<td>LoseSceneSettings.lighting</td>
+<td></td>
+<td></td>
+<td>Controlled</td>
+<td></td>
+<td></td>
+<td>1.80 KB 24/</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>LoseSceneSettings.lighting.meta</td>
+<td></td>
+<td>Controlled</td>
+<td></td>
+<td></td>
+<td>400 bytes 24/</td>
+<td></td>
+</tr>
+<tr>
+<td>0</td>
+<td>Attributes</td>
+<td></td>
+<td></td>
+<td>MainScene.ur</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>786.02 KB 24/</td>
+<td></td>
+</tr>
+<tr>
+<td>111</td>
+<td>Code Reviews</td>
+<td></td>
+<td></td>
+<td>MainScene.ur</td>
+<td>Open</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>344 bytes 24/</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>1<br>MainSceneSe</td>
+<td>Diff with previous revision</td>
+<td></td>
+<td></td>
+<td>Ctrl+D</td>
+<td></td>
+<td>1.80 KB 24/</td>
+<td></td>
+</tr>
+<tr>
+<td>1</td>
+<td>Sync to Cloud</td>
+<td></td>
+<td></td>
+<td>2<br>MainSceneSe</td>
+<td>Add to source control</td>
+<td></td>
+<td></td>
+<td>Ctrl+Shift+A</td>
+<td></td>
+<td>400 bytes 24/</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>MLTraining.m</td>
+<td>Add directory tree to source control Ctrl+Shift+R</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>172 bytes 24/</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>RaceTrackMa</td>
+<td>Check in</td>
+<td></td>
+<td></td>
+<td>Ctrl+1</td>
+<td></td>
+<td>786.76 KB 09/</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>1<br>RaceTrackMa</td>
+<td>Checkout</td>
+<td></td>
+<td></td>
+<td>Ctrl+0</td>
+<td></td>
+<td>155 bytes 09/</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>WinScene.uni</td>
+<td>Lock and checkout</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>35.67 KB 24/</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>1<br>WinScene.uni</td>
+<td>Undo checkout</td>
+<td></td>
+<td></td>
+<td>Ctri-Z</td>
+<td></td>
+<td>343 bytes 24/</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>11<br>WinSceneSet</td>
+<td>Change revision type</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>1.80 KB 24/</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>WinSceneSet</td>
+<td>Add to ignored list</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>399 bytes 24/</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>&gt;</td>
+<td>ScriptableObject</td>
+<td>Add to cloaked list</td>
+<td></td>
+<td></td>
+<td></td>
+<td>&gt;</td>
+<td></td>
+<td>24/</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>Scripts</td>
+<td>Add to hidden changes list</td>
+<td></td>
+<td></td>
+<td></td>
+<td>&gt;</td>
+<td></td>
+<td>09/</td>
+</tr>
+</tbody>
+</table>
+<p>Lock files from the UVCS desktop app in the Workspace Explorer.</p>
+<p><img src="_page_85_Picture_0.jpeg" alt=""></p>
+<p>You can define locking rules for this type of file. To just lock this specific file, choose <strong>Lock only</strong> (The fourth option in the list below).</p>
+<table>
+<thead>
+<tr>
+<th>Add lock rule and checkout</th>
+<th>×</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Add lock rule and checkout</td>
+<td></td>
+</tr>
+<tr>
+<td>To lock a file, you must first configure a lock rule.</td>
+<td></td>
+</tr>
+<tr>
+<td>Choose one of the following options to configure which files are automatically locked on checkout.</td>
+<td></td>
+</tr>
+<tr>
+<td>· Lock files matching *. unity</td>
+<td></td>
+</tr>
+<tr>
+<td>Lock any file with name &#39;OasisScene.unity&#39;</td>
+<td></td>
+</tr>
+<tr>
+<td>Lock all files in directory<br>/Assets/Scenes</td>
+<td></td>
+</tr>
+<tr>
+<td>Lock only<br>/Assets/Scenes/OasisScene.unity</td>
+<td></td>
+</tr>
+<tr>
+<td>Let me edit the lock rule</td>
+<td></td>
+</tr>
+<tr>
+<td>* unity</td>
+<td></td>
+</tr>
+<tr>
+<td>Click here to learn how to configure lock rules</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Cancel<br>OK</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Define rules for locking this file or filetype.</p>
+<p><img src="_page_85_Picture_4.jpeg" alt=""></p>
+<p>The file will now display a purple lock icon in each team member&#39;s version of Unity, letting others know that you have locked the file for editing.</p>
+<p>The purple lock icon shows other team members that this file is locked.</p>
+<p>Team members can still view the file as read-only, but cannot make any changes until it is checked back in by you.</p>
+<p>After completing your changes, check in the file and it removes the lock.</p>
+<p><span id="page-86-0"></span><img src="_page_86_Picture_0.jpeg" alt=""></p>
+<p>Team members with admin status can log into the cloud and go to <strong>Repositories</strong> and then <strong>File locks</strong> to manually remove a lock.</p>
+<table>
+<thead>
+<tr>
+<th>Asset Manager</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th>Star</th>
+<th>Settings</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>File explorer</td>
+<td>A File locks</td>
+<td>@ Code reviews</td>
+<td>P Branches</td>
+<td>C Labels<br>· Changesets</td>
+<td>O Attributes</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>Tutorial: How to use Smart locks C</td>
+</tr>
+<tr>
+<td>File Locks</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>These files were locked upon checkout to prevent merge conflict. You can manage or configure lock rates in your settings.</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Q<br>Search file locks</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>Search<br>O Selections</td>
+<td></td>
+<td>Remove locks</td>
+</tr>
+<tr>
+<td>P Lock branch &gt;</td>
+<td>Q Lock owner v</td>
+<td>B Date V</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><br>Rem</td>
+<td></td>
+<td>Lock status</td>
+<td>Lock branch</td>
+<td>Lock date ↓</td>
+<td>Lock owner</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&gt;</td>
+<td>/Assets/Karting/Scenes</td>
+<td>Locked</td>
+<td>/main</td>
+<td>6/24/24, 5:59 PM</td>
+<td>Dave@mail.com</td>
+<td></td>
+<td>Release</td>
+<td>Remove</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Removing file locks on the Cloud</p>
+<h3 id="monitoring-or-removing-a-repository">Monitoring or removing a repository</h3>
+<p>You can monitor the Repository in the desktop app. Click on the <strong>Home</strong> icon at the top left and select the top icon to view the current Repository.</p>
+<p>From here you can download the entire repo to your computer, open it in the desktop app, rename it, or delete it. Repos stay on the cloud for a further 10 days before being deleted, in case you change your mind. You can retrieve a deleted repo by choosing <strong>Undelete</strong>.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Unity DevOps Version Control</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th>-</th>
+<th>D</th>
+<th>×</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>0 0 1</td>
+<td>Dave@mail.com cloud<br>&gt;</td>
+<td>CMT@cloud<br>V</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Repositories +</td>
+<td>Q Fiter</td>
+<td>હિ</td>
+<td>C Kart Racer</td>
+<td>Download repository Show locks</td>
+<td></td>
+<td>B 1</td>
+<td>ប៉ា</td>
+<td>Q Search files<br>ne</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Kart Racer</td>
+<td></td>
+<td></td>
+<td>Download this repository<br>Assets<br>2<br>Open this repository<br>Packages<br>2</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Kart Racer</td>
+<td></td>
+<td></td>
+<td>&gt; ProjectSettings<br>Rename<br>Delete</td>
+<td></td>
+<td>F2<br>Delete</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>RPG Game</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>Undelete</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>Create new sync view (push/pull) Ctrl+C</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>Path permissions<br>Permissions<br>Repository server permissions</td>
+<td>Cul+P</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Downloading, deleting, or undeleting a repo</p>
+<p><img src="_page_87_Picture_0.jpeg" alt=""></p>
+<p>You can view any repositories on the Cloud in the DevOps section. This will show you the actual storage used, which should be much smaller than the project on your computer.</p>
+<p>Here you can also add or remove repositories. The DevOps section will give you more</p>
+<p>information regarding your DevOps account including usage reports and settings.</p>
+<table>
+<thead>
+<tr>
+<th>Asset Manager</th>
+<th></th>
+<th></th>
+<th>Star</th>
+<th>Settings</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>File explorer</td>
+<td>File locks</td>
+<td>Code reviews</td>
+<td>&amp; Branches</td>
+<td>-0-</td>
+<td>&gt;</td>
+</tr>
+<tr>
+<td>17<br>Q<br>Search</td>
+<td></td>
+<td>8 /main v</td>
+<td></td>
+<td>Open in app</td>
+<td></td>
+</tr>
+<tr>
+<td>Assets</td>
+<td></td>
+<td>1<br>Name</td>
+<td></td>
+<td>Changeset</td>
+<td></td>
+</tr>
+<tr>
+<td>Packages<br>ProjectSettings</td>
+<td></td>
+<td>Assets</td>
+<td>CS:9</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>Packages</td>
+<td>CS:3</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>ProjectSettings</td>
+<td>CS:5</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>A</td>
+</tr>
+</tbody>
+</table>
+<p>View the storage of your repositories by logging into the Unity Cloud DevOps section.</p>
+<p>You can view your current data usage by checking the <strong>Overview</strong> section in the cloud. This will show your monthly GB hours. See the <a href="https://unity.com/products/compare-plans/unity-cloud">Unity Cloud pricing plans page</a> for more information or sign into the Unity Cloud dashboard and go to the <a href="https://cloud.unity.com/home/organizations/default/devops/about">DevOps dashboard &quot;About&quot; page</a>.</p>
+<p><img src="_page_87_Picture_6.jpeg" alt=""></p>
+<p>The Overview section on the Cloud shows your monthly storage.</p>
+<p><span id="page-88-0"></span><img src="_page_88_Picture_0.jpeg" alt=""></p>
+<h2 id="unity-support">Unity support</h2>
+<p><img src="_page_88_Picture_2.jpeg" alt=""></p>
+<p>In the DevOps section of the Unity Cloud dashboard, click on <strong>Help and support</strong>.</p>
+<p>From the cloud dashboard, click on the <strong>Help and support</strong> button to view FAQs, forums and blog posts, or generate a support ticket for help with issues that you might encounter.</p>
+<p>You will also find sample repo projects in the <strong>DevOps</strong> category, under <strong>Explore repositories</strong>. You can download these public repos to your computer as template projects to work on.</p>
+<table>
+<thead>
+<tr>
+<th>Overview</th>
+<th>Explore Unity repositories</th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>88 Explore repositories</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Version Control -</td>
+<td>Unity Samples Alpha</td>
+<td></td>
+<td></td>
+<td>Tutorial: Use Unity Samples</td>
+</tr>
+<tr>
+<td>UVCS organizations</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Or select organization</td>
+<td>All repositories<br>Starred by me</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>0<br>2</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Repositories</td>
+<td></td>
+<td></td>
+<td>Q Search by name</td>
+<td>Search</td>
+</tr>
+<tr>
+<td>Seats</td>
+<td>Name</td>
+<td>Stars</td>
+<td>2<br>Last activity</td>
+<td>Size</td>
+</tr>
+<tr>
+<td>User groups</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Usage reporting</td>
+<td>Megacity-Metro<br>Experience multiplayer mechanics like interpolatio</td>
+<td>53<br>46 stars</td>
+<td>6 days ago</td>
+<td>2.12 GB</td>
+</tr>
+<tr>
+<td>Settings</td>
+<td>n, prediction and lag compensation in this 128+</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Build Automation -</td>
+<td>2d-game-match3</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Build history</td>
+<td>Gem Hunter Match is an official Unity sample that<br>shows how to make static objects and casual ga</td>
+<td>40 stars</td>
+<td>August 23, 2024</td>
+<td>75.96 MB</td>
+</tr>
+<tr>
+<td>Configurations</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Service updates</td>
+<td>UGS-use-case-samples</td>
+<td>57<br>20 stars</td>
+<td>July 31, 2024</td>
+<td>8.81 MB</td>
+</tr>
+<tr>
+<td>Settings</td>
+<td>This Unity Gaming Services (UGS) Use Cases proj<br>ect contains a collection of samples designed to</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Unity Cloud Drive</td>
+<td>2d-game-farming</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>N Usage</td>
+<td>Happy Harvest is an official Unity sample project t<br>hat showcases the capabilities of the native 2D t</td>
+<td>8<br>38 stars</td>
+<td>July 19, 2024</td>
+<td>44.8 MB</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Some of the public sample repositories you can download</p>
+<h2 id="-span-id-page-89-0-span-build-the-foundation-for-your-live-game"><span id="page-89-0"></span>Build the foundation for your live game</h2>
+<p>Outside of devops Unity also provides a complete ecosystem for managing live games with <a href="https://unity.com/solutions/gaming-services">Unity Gaming Services</a> (UGS) that can help you acquire and connect your players at scale across multiple platforms, and manage your back end infrastructure. Here is a brief overview of some of the services.</p>
+<h2 id="unity-gaming-services">Unity Gaming Services</h2>
+<h4 id="-multiplayer-"><strong>Multiplayer</strong></h4>
+<p><img src="_page_89_Picture_4.jpeg" alt=""></p>
+<p><img src="_page_89_Picture_8.jpeg" alt=""></p>
+<p>Unity offers two networking stacks: Netcode for GameObjects and Netcode for Entities, plus multiplayer tools from Unity Gaming Services like Game Server Hosting and Vivox Voice Chat. You can build within Unity&#39;s ecosystem, or mix and match your preferred tools and services depending on your needs.</p>
+<p><a href="https://unity.com/solutions/multiplayer">Learn more about Unity Multiplayer</a></p>
+<p><span id="page-90-0"></span><img src="_page_90_Picture_0.jpeg" alt=""></p>
+<h4 id="-community-"><strong>Community</strong></h4>
+<p><img src="_page_90_Figure_3.jpeg" alt=""></p>
+<p>Access a suite of community gaming services for games of all sizes, from a two-person project to millions of simultaneous users, with engine-agnostic voice and text chat. Add social elements like friends and leaderboards to your game to increase player engagement and</p>
+<h4 id="-learn-more-about-unity-game-community-solutions-https-unity-com-solutions-community-"><a href="https://unity.com/solutions/community">Learn more about Unity game Community solutions</a></h4>
+<h4 id="-accounts-"><strong>Accounts</strong></h4>
+<p><img src="_page_90_Picture_7.jpeg" alt=""></p>
+<p><img src="_page_90_Picture_9.jpeg" alt=""></p>
+<p>Unity Authentication and Unity Player Accounts offer you the flexibility to handle your players&#39; identities by providing mix-and-match features suited to your game and target platforms.</p>
+<p><a href="https://unity.com/solutions/accounts">Learn more about Unity Authentication and Player Accounts</a>.</p>
+<h4 id="-content-management-"><strong>Content management</strong></h4>
+<p><img src="_page_90_Picture_14.jpeg" alt=""></p>
+<p><img src="_page_90_Picture_16.jpeg" alt=""></p>
+<p><img src="_page_90_Picture_17.jpeg" alt=""></p>
+<p><img src="_page_90_Picture_18.jpeg" alt=""></p>
+<p><img src="_page_90_Picture_21.jpeg" alt=""></p>
+<p>Cloud Save makes it efficient to create a better player experience where players can store game data to the cloud. With Cloud Content Delivery, you can build and release game updates with powerful asset management and content delivery via the cloud and the first 50 GB of bandwidth are free every month.</p>
+<p>The Remote Config service makes it efficient to run A/B experiments that target specific player segments by using Game Overrides. You can change your game&#39;s difficulty, ad frequency, or general attributes for all players or a subset of players before making any code changes or app updates.</p>
+<p><a href="https://unity.com/solutions/content-management">Learn more about Unity Content Management</a></p>
+<p><img src="_page_90_Figure_26.jpeg" alt=""></p>
+<p><span id="page-91-0"></span><img src="_page_91_Picture_0.jpeg" alt=""></p>
+<h4 id="-crash-reporting-"><strong>Crash reporting</strong></h4>
+<p>The Cloud Diagnostics service can help improve stability and reduce churn. It provides realtime crash data so your team can fix bugs faster and help prevent player churn. Unity offers crash and error reporting solutions that are free to start using and can be scaled up as your project grows.</p>
+<p><a href="https://unity.com/solutions/crash-reporting">Learn more about Unity Cloud Diagnostics</a></p>
+<h4 id="-game-economy-"><strong>Game economy</strong></h4>
+<p><img src="_page_91_Picture_7.jpeg" alt=""></p>
+<p>Game Economy services provide you with features to build a customized in-game economy and offer your players seamless purchases, currency conversion, inventory management, and more. Once you have integrated a fully-featured economy into your game you can manage it efficiently through a streamlined dashboard.</p>
+<p><a href="https://unity.com/products/economy">Learn more about Unity&#39;s Economy service</a></p>
+<h4 id="-engagement-and-analytics-"><strong>Engagement and analytics</strong></h4>
+<p><img src="_page_91_Picture_11.jpeg" alt=""></p>
+<p>Understand your game and engage your players. These services can help you efficiently refine your game experience, retain players, and grow your game.</p>
+<p><a href="https://unity.com/solutions/engage-players">Learn more about Unity Analytics</a></p>
+<p><span id="page-92-0"></span><img src="_page_92_Picture_0.jpeg" alt=""></p>
+<h2 id="unity-grow">Unity Grow</h2>
+<h4 id="-user-acquisition-"><strong>User acquisition</strong></h4>
+<p><img src="_page_92_Picture_4.jpeg" alt=""></p>
+<p><img src="_page_92_Picture_6.jpeg" alt=""></p>
+<p>Unity&#39;s suite of user acquisition services can help your game acquire the right mobile users. Tap into the extensive global supply of Unity Ads to optimize your campaign goals for return on ad spend (ROAS), retention, or scale.</p>
+<p><a href="https://unity.com/solutions/user-acquisition">Learn about Unity user acquisition</a></p>
+<h4 id="-monetization-"><strong>Monetization</strong></h4>
+<p><img src="_page_92_Picture_12.jpeg" alt=""></p>
+<p>Reach your app&#39;s full revenue potential with the most advanced technology and robust toolset in the market for monetizing your game effectively.</p>
+<p><a href="https://unity.com/solutions/app-monetization">Learn about Unity monetization</a></p>
+<h2 id="-span-id-page-93-0-span-conclusion"><span id="page-93-0"></span>Conclusion</h2>
+<p>Hopefully this guide will help you to feel more comfortable working with version control as part of a team in Unity. Even if you&#39;re working on a solo project, the principles of organizing your project and using version control can be really useful.</p>
+<p>The biggest takeaway is the importance of clear team communication and agreement on tools, processes, structure and code style. As a team, you need to agree on your guidelines: how you should structure your project, which version control system to use, and how your workflow in that system looks. Then, when you start integrating other tools such as JIRA, GitLab, build tools, or automated testing, the work you&#39;ve already done structuring your project and workflow will really come into its own.</p>
+<p>Finally, check out the following resources to find a wealth of information on the various version control systems discussed in the book, plus more tips on setting up your Unity project for success.</p>
+<h2 id="-span-id-page-94-0-span-additional-resources"><span id="page-94-0"></span>Additional resources</h2>
+<ul>
+<li><a href="https://blog.unity.com/technology/eight-factors-to-consider-when-choosing-a-version-control-system?utm_source=demand-gen&amp;utm_medium=PDF&amp;utm_campaign=asset-links-gmg-achieve-quality&amp;utm_content=version-control-and-project-organization-ebook">Eight factors to consider when choosing a version control system</a></li>
+<li><a href="https://youtu.be/ISW2nS_v3Ic">Introduction to version control, Unite Now 2020</a></li>
+<li><a href="https://www.raywenderlich.com/books/git-apprentice/v2.0/">Git Apprentice, by Chris Belanger and Bhagat Singh</a></li>
+<li><a href="https://youtu.be/PjPK6hxGUFU">Version Control for Games with Unity&#39;s Plastic SCM</a></li>
+<li><a href="https://docs.plasticscm.com/book/">Plastic SCM product documentation</a></li>
+<li><a href="https://www.youtube.com/watch?v=WJTKSUgj8pY">Mergebot in Plastic SCM</a></li>
+<li><a href="https://github.com/UnityTechnologies/open-project-1">Unity open project with version control</a></li>
+<li><a href="https://create.unity.com/ko-op-plastic-scm-case-study">How KO\_OP uses Plastic SCM to accelerate production</a></li>
+<li><a href="https://create.unity.com/hidden-productivity-costs-e-book">The hidden productivity costs disrupting your release timelines</a></li>
+</ul>
+<h4 id="-perforce-setup-"><strong>Perforce setup</strong></h4>
+<ul>
+<li><a href="https://www.perforce.com/products/helix-core/configure-helix-core-game-engine">How to Configure Helix Core and Game Engine</a></li>
+<li><a href="https://www.perforce.com/products/helix-core/learning-resources">Helix Core documentation</a></li>
+</ul>
+<p><img src="_page_95_Picture_0.jpeg" alt=""></p>
+<p><a href="https://unity.com/">unity.com</a></p>
+</body></html>
